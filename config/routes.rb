@@ -23,14 +23,26 @@
 #          new_user_unlock GET    /users/unlock/new(.:format)       devise/unlocks#new
 #              user_unlock GET    /users/unlock(.:format)           devise/unlocks#show
 #                          POST   /users/unlock(.:format)           devise/unlocks#create
+#       users_edit_details GET    /users/edit_details(.:format)     users/registrations#edit_details
+#       users_save_details PATCH  /users/save_details(.:format)     users/registrations#save_details
+#                     user GET    /users/:id(.:format)              users#show
 
 Rails.application.routes.draw do
   root "home#index"
 
-  devise_for :users, controllers: {
-    sessions: 'users/sessions',
-    passwords: 'users/passwords',
-    registrations: 'users/registrations',
-    confirmations: 'users/confirmations'
-  }
+  devise_for :users,
+             controllers: {
+               sessions: "users/sessions", # explicitly defining controllers
+               passwords: "users/passwords",
+               registrations: "users/registrations",
+               confirmations: "users/confirmations",
+             }
+
+  devise_scope :user do
+    get "users/edit_details" => "users/registrations#edit_details"
+    patch "users/save_details" => "users/registrations#save_details"
+  end
+
+  get "users/:id"
+  resources :users, only: [:show]
 end
