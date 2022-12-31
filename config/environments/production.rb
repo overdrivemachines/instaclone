@@ -90,4 +90,17 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # send emails via gmail
+  config.action_mailer.delivery_method = :smtp
+  host = 'instaclone.dipenchauhan.com'
+  config.action_mailer.default_url_options = { host: host }
+  config.action_mailer.smtp_settings = {
+    port: 587,
+    address: 'smtp.gmail.com',
+    user_name: Rails.application.credentials.dig(:email, :user),
+    password: Rails.application.credentials.dig(:email, :password),
+    authentication: :plain,
+    enable_starttls_auto: true
+  }
 end

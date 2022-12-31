@@ -15,7 +15,12 @@ gem "bootsnap", require: false
 gem "sassc-rails"
 gem "image_processing", "~> 1.2"
 
-gem "devise" # Authentication
+# Authentication
+gem 'devise'
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
+gem "omniauth-rails_csrf_protection", "~> 1.0"
+
 gem "rails-erd" # ERD diagram
 gem 'bootstrap', '~> 5.2.2'
 
@@ -25,7 +30,6 @@ end
 
 group :development do
   gem "web-console"
-  # In development group:
   gem "annotate"
   gem "faker"
   # Preview email in the default browser instead of sending it.
