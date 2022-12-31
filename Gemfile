@@ -14,6 +14,9 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
 gem "sassc-rails"
 gem "image_processing", "~> 1.2"
+# Authentication
+gem "devise"
+gem "rails-erd"
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
@@ -21,4 +24,9 @@ end
 
 group :development do
   gem "web-console"
+  # In development group:
+  gem "annotate"
+  gem "faker"
+  # Preview email in the default browser instead of sending it.
+  gem "letter_opener"
 end
