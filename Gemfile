@@ -14,9 +14,10 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
 gem "sassc-rails"
 gem "image_processing", "~> 1.2"
-# Authentication
-gem "devise"
-gem "rails-erd"
+
+gem "devise" # Authentication
+gem "rails-erd" # ERD diagram
+gem 'bootstrap', '~> 5.2.2'
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
