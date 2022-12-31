@@ -65,6 +65,22 @@ sudo -u postgres createuser -s instaclone -P
 # Create DB:
 rails db:create
 ```
+- Add the above password in credentials:
+```sh
+EDITOR="code --wait" rails credentials:edit
+```
+```
+database_production:
+  password: <your_password>
+```
+- Update database.yml:
+```
+production:
+  <<: *default
+  database: instaclone_production
+  username: instaclone
+  password: <%= Rails.application.credentials.database_production[:password] %>
+```
 
 ## References
 
