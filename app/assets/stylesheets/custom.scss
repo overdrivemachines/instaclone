@@ -335,14 +335,17 @@ ul.main-nav .dd {
 .post-author-info {
   flex: 1;
   padding-left: 0.66em;
+  .name {
+    font-size: 1.25em;
+  }
   .username {
     color: var(--color-text1);
   }
   .ago {
     color: var(--color-text1);
-    font-size: 0.8em;
+    // font-size: 0.8em;
     font-weight: 500;
-    margin-top: 0.33em;
+    // margin-top: 0.25em;
   }
 }
 .post-ellipsis {
@@ -392,7 +395,7 @@ ul.main-nav .dd {
 }
 .comments-container {
   padding: 0.25em 1.5em;
-  font-size: 0.875em;
+  // font-size: 0.875em;
 
   .comment {
     display: flex;
@@ -428,6 +431,10 @@ ul.main-nav .dd {
     margin: 0 1em;
     min-height: 2em;
     font-size: 0.875em;
+  }
+
+  .btn-primary {
+    font-size: 1em;
   }
 }
 

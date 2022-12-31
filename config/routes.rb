@@ -43,6 +43,6 @@ Rails.application.routes.draw do
     patch "users/save_details" => "users/registrations#save_details"
   end
 
-  get "users/:id"
+  # get "users/:id"
   resources :users, only: [:show]
 end
