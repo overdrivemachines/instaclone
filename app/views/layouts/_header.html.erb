@@ -1,6 +1,8 @@
 <div class="logo-container">
-  <%= image_tag "instaclone-white-logo.png", class: "logo" %>
-  <%= image_tag "instaclone-white-text.png", class: "logo-text" %>
+  <%= link_to root_path do %>
+    <%= image_tag "instaclone-white-logo.png", class: "logo" %>
+    <%= image_tag "instaclone-white-text.png", class: "logo-text" %>
+  <% end %>
 </div>
 <div class="search-container">
   <input type="text" class="form-control main-search" placeholder="Search">
@@ -8,10 +10,10 @@
 <div class="nav-container">
   <ul class="main-nav">
     <li class="nav-item active">
-      <a href="#" class="nav-item-link">
+      <%= link_to root_path, class: "nav-item-link" do %>
         <div class="fa-container"><i class="fa-solid fa-house"></i></div>
         <div class="nav-item-name">Home</div>
-      </a>
+      <% end %>
 
     </li>
     <li class="nav-item">
@@ -30,7 +32,7 @@
     <li class="dd">
       <div class="dropdown">
         <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
-          Login
+          Sign In
         </button>
         <form class="dropdown-menu dropdown-menu-end p-4">
           <div class="mb-3">
