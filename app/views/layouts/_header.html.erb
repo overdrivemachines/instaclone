@@ -1,0 +1,57 @@
+<div class="logo-container">
+  <%= image_tag "instaclone-white-logo.png", class: "logo" %>
+  <%= image_tag "instaclone-white-text.png", class: "logo-text" %>
+</div>
+<div class="search-container">
+  <input type="text" class="form-control main-search" placeholder="Search">
+</div>
+<div class="nav-container">
+  <ul class="main-nav">
+    <li class="nav-item active">
+      <a href="#" class="nav-item-link">
+        <div class="fa-container"><i class="fa-solid fa-house"></i></div>
+        <div class="nav-item-name">Home</div>
+      </a>
+
+    </li>
+    <li class="nav-item">
+      <a href="#" class="nav-item-link">
+        <div class="fa-container"><i class="fa-solid fa-envelope"></i></div>
+        <div class="nav-item-name">Mail</div>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="#" class="nav-item-link">
+        <div class="fa-container"><i class="fa-solid fa-bell"></i></div>
+        <div class="nav-item-name">Bell</div>
+      </a>
+    </li>
+    <li class="divider"></li>
+    <li class="dd">
+      <div class="dropdown">
+        <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+          Login
+        </button>
+        <form class="dropdown-menu dropdown-menu-end p-4">
+          <div class="mb-3">
+            <label for="exampleDropdownFormEmail2" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="exampleDropdownFormEmail2" placeholder="email@example.com">
+          </div>
+          <div class="mb-3">
+            <label for="exampleDropdownFormPassword2" class="form-label">Password</label>
+            <input type="password" class="form-control" id="exampleDropdownFormPassword2" placeholder="Password">
+          </div>
+          <div class="mb-3">
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" id="dropdownCheck2">
+              <label class="form-check-label" for="dropdownCheck2">
+                Remember me
+              </label>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Sign in</button>
+        </form>
+      </div>
+    </li>
+  </ul>
+</div>
