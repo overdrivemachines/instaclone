@@ -30,6 +30,8 @@
 Rails.application.routes.draw do
   root "home#index"
 
+  get "home/message"
+
   devise_for :users,
              controllers: {
                sessions: "users/sessions", # explicitly defining controllers
