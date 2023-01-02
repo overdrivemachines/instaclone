@@ -44,6 +44,8 @@ gem "annotate"
 gem "faker"
 # Preview email in the default browser instead of sending it.
 gem "letter_opener"
+# Format ERB Files
+gem "erb-formatter"
 ```
 
 - Rails erd:
@@ -79,7 +81,7 @@ sudo -u postgres createuser -s instaclone -P
 rails db:create
 ```
 
-- Add the above password in credentials:
+- Add the above password in credentials on development server:
 
 ```sh
 EDITOR="code --wait" rails credentials:edit
@@ -100,7 +102,15 @@ production:
   password: <%= Rails.application.credentials.database_production[:password] %>
 ```
 
-- Reset DB: `rails db:migrate:reset`
+- Install the local gems while preventing the installation of production gems
+
+```sh
+bundle config set --local without 'production'
+bundle install
+bundle lock --add-platform x86_64-linux
+```
+
+- (Optional) Reset DB: `rails db:migrate:reset`
 
 ## References
 
