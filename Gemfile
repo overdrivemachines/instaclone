@@ -34,4 +34,6 @@ group :development do
   gem "faker"
   # Preview email in the default browser instead of sending it.
   gem "letter_opener"
+  # Format ERB Files
+  gem "erb-formatter"
 end
