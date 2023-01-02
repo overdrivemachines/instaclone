@@ -14,7 +14,6 @@
         <div class="fa-container"><i class="fa-solid fa-house"></i></div>
         <div class="nav-item-name">Home</div>
       <% end %>
-
     </li>
     <li class="nav-item">
       <a href="#" class="nav-item-link">
@@ -29,31 +28,26 @@
       </a>
     </li>
     <li class="divider"></li>
-    <li class="dd">
-      <div class="dropdown">
-        <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
-          Sign In
-        </button>
-        <form class="dropdown-menu dropdown-menu-end p-4">
-          <div class="mb-3">
-            <label for="exampleDropdownFormEmail2" class="form-label">Email address</label>
-            <input type="email" class="form-control" id="exampleDropdownFormEmail2" placeholder="email@example.com">
-          </div>
-          <div class="mb-3">
-            <label for="exampleDropdownFormPassword2" class="form-label">Password</label>
-            <input type="password" class="form-control" id="exampleDropdownFormPassword2" placeholder="Password">
-          </div>
-          <div class="mb-3">
-            <div class="form-check">
-              <input type="checkbox" class="form-check-input" id="dropdownCheck2">
-              <label class="form-check-label" for="dropdownCheck2">
-                Remember me
-              </label>
-            </div>
-          </div>
-          <button type="submit" class="btn btn-primary">Sign in</button>
-        </form>
-      </div>
-    </li>
+    <% if user_signed_in? %>
+      <li class="dd">
+        <div class="dropdown">
+          <button type="button" class="btn btn-primary dropdown-toggle dd-btn" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+            <img src="https://cdn.dribbble.com/users/1788965/avatars/small/7723792f45aa188dd25e5d4167dbe8b6.jpeg" alt="" class="dd-btn-avatar">
+            <span>@helloworld</span>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><button class="dropdown-item" type="button">View Profile</button></li>
+            <li><button class="dropdown-item" type="button">Edit Profile</button></li>
+            <li><button class="dropdown-item" type="button">Sign Out</button></li>
+          </ul>
+        </div>
+      </li>
+    <% else %>
+      <li class="nav-item active dark">
+        <%= link_to new_user_session_path, class: "nav-item-link" do %>
+          <div class="nav-item-name">Log In</div>
+        <% end %>
+      </li>
+    <% end %>
   </ul>
 </div>
