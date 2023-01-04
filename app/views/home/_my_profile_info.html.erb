@@ -1,10 +1,10 @@
 <% if user_signed_in? %>
   <div class="post-container">
     <div>
-      <img src="https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80" class="my-profile-bg" alt="">
+      <%= image_tag current_user.avatar_background_as_thumbnail, class: "my-profile-bg" %>
     </div>
     <div class="my-profile-body">
-      <img src="https://cdn.dribbble.com/users/1788965/avatars/small/7723792f45aa188dd25e5d4167dbe8b6.jpeg" alt="" class="my-profile-pic">
+      <%= image_tag current_user.avatar_as_thumbnail, class: "my-profile-pic" %>
       <h3 class="my-profile-name"><%= current_user.full_name %></h3>
       <h5 class="my-profile-username">@<%= current_user.username %></h5>
       <p class="my-profile-info"><%= current_user.bio %></p>
@@ -25,7 +25,7 @@
         </div>
       </div>
 
-      <%= link_to "View Profile", current_user, class: "my-profile-link blue-link" %>
+      <%= link_to "View My Profile", current_user, class: "my-profile-link blue-link" %>
     </div>
 
   </div>
