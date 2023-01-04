@@ -1,10 +1,18 @@
 <% if user_signed_in? %>
   <div class="post-container">
     <div>
-      <%= image_tag current_user.avatar_background_as_thumbnail, class: "my-profile-bg" %>
+      <% if current_user.avatar_background.attached? %>
+        <%= image_tag current_user.avatar_background_as_thumbnail, class: "my-profile-bg" %>
+      <% else %>
+        <%= image_tag "bg-placeholder", class: "my-profile-bg" %>
+      <% end %>
     </div>
     <div class="my-profile-body">
-      <%= image_tag current_user.avatar_as_thumbnail, class: "my-profile-pic" %>
+      <% if current_user.avatar.attached? %>
+        <%= image_tag current_user.avatar_as_thumbnail, class: "my-profile-pic" %>
+      <% else %>
+        <%= image_tag "person-placeholder.jpg", class: "my-profile-pic" %>
+      <% end %>
       <h3 class="my-profile-name"><%= current_user.full_name %></h3>
       <h5 class="my-profile-username">@<%= current_user.username %></h5>
       <p class="my-profile-info"><%= current_user.bio %></p>
