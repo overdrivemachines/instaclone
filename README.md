@@ -117,3 +117,9 @@ bundle lock --add-platform x86_64-linux
 - PostgreSQL Setup
   - https://www.digitalocean.com/community/tutorials/how-to-use-postgresql-with-your-ruby-on-rails-application-on-ubuntu-20-04
   - https://www.youtube.com/watch?v=5QUTfcO7BEw
+- Email Validation - https://mailtrap.io/blog/rails-email-validation/
+- /:username - https://angelos.dev/2020/04/slash-username-urls-in-rails/
+- Resize Images
+  - https://dev.to/mikerogers0/resize-images-with-active-storage-in-rails-481n
+  - https://www.bigbinary.com/blog/rails-7-adds-ability-to-use-predefined-variants
+- Save and Delete button - https://dev.to/konnorrogers/escaping-the-traditional-rails-form-4c4o
