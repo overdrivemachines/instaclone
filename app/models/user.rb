@@ -54,11 +54,11 @@ class User < ApplicationRecord
   FULL_NAME_REGEX = /\A[^0-9`!@#$%\^&*+_=]+\z/
 
   validates :bio, length: { maximum: 140 }
-  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP, message: "Email invalid" },
+  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP, message: "is invalid" },
                     uniqueness: { case_sensitive: false },
                     length: { minimum: 4, maximum: 254 }
-  validates :full_name, presence: true, format: { with: FULL_NAME_REGEX, message: "Name invalid" }, length: 5..25
-  validates :username, presence: true, format: { with: USERNAME_REGEX, message: "Username invalid" }, length: 5..25,
+  validates :full_name, presence: true, format: { with: FULL_NAME_REGEX, message: "is invalid" }, length: 5..25
+  validates :username, presence: true, format: { with: USERNAME_REGEX, message: "is invalid" }, length: 5..25,
                        uniqueness: { case_sensitive: false }, exclusion: { in: RESERVED_USERNAMES }
 
   def avatar_as_thumbnail
@@ -70,10 +70,12 @@ class User < ApplicationRecord
   end
 
   def initialize(args = {})
-    args[:email].strip!.downcase! if args[:email]
-    args[:username].strip!.downcase! if args[:username]
-    args[:full_name].strip! if args[:full_name]
-    args[:bio].strip! if args[:bio]
+    if args
+      (args[:email].strip! && args[:email].downcase!) if args[:email]
+      (args[:username].strip! && args[:username].downcase!) if args[:username]
+      args[:full_name].strip! if args[:full_name]
+      args[:bio].strip! if args[:bio]
+    end
     super
   end
 
