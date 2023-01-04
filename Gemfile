@@ -36,4 +36,6 @@ group :development do
   gem "letter_opener"
   # Format ERB Files
   gem "erb-formatter"
+  # Annotate controllers
+  gem "chusaku", require: false
 end

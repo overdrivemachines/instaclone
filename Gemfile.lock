@@ -83,6 +83,8 @@ GEM
       sassc-rails (>= 2.0.0)
     builder (3.2.4)
     choice (0.2.0)
+    chusaku (0.6.1)
+      railties (>= 3.0)
     concurrent-ruby (1.1.10)
     crass (1.0.6)
     date (3.3.3)
@@ -277,6 +279,7 @@ DEPENDENCIES
   annotate
   bootsnap
   bootstrap (~> 5.2.2)
+  chusaku
   debug
   devise
   erb-formatter
