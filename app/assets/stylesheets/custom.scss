@@ -116,6 +116,15 @@ h3 {
   font-weight: 700;
 }
 
+.msg-container {
+  width: 100%;
+  padding: 1em;
+  font-size: 1.33em;
+  background: var(--color-input-bg);
+  color: var(--color-text2);
+  border-radius: 0;
+}
+
 //////////////////////////////////////////////////////////
 // Header
 //////////////////////////////////////////////////////////
@@ -234,6 +243,7 @@ ul.main-nav .dd {
   border-radius: 26px;
   img {
     height: 32px;
+    width: 32px;
     border-radius: 32px;
     // margin-right: 0.5em;
   }
