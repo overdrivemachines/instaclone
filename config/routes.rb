@@ -2,6 +2,7 @@
 #
 #                   Prefix Verb   URI Pattern                       Controller#Action
 #                     root GET    /                                 home#index
+#             home_message GET    /home/message(.:format)           home#message
 #         new_user_session GET    /users/sign_in(.:format)          users/sessions#new
 #             user_session POST   /users/sign_in(.:format)          users/sessions#create
 #     destroy_user_session DELETE /users/sign_out(.:format)         users/sessions#destroy
@@ -25,7 +26,7 @@
 #                          POST   /users/unlock(.:format)           devise/unlocks#create
 #       users_edit_details GET    /users/edit_details(.:format)     users/registrations#edit_details
 #       users_save_details PATCH  /users/save_details(.:format)     users/registrations#save_details
-#                     user GET    /users/:id(.:format)              users#show
+#                     user GET    /:username(.:format)              users#show {:username=>/\w+/}
 
 Rails.application.routes.draw do
   root "home#index"
@@ -37,14 +38,17 @@ Rails.application.routes.draw do
                sessions: "users/sessions", # explicitly defining controllers
                passwords: "users/passwords",
                registrations: "users/registrations",
-               confirmations: "users/confirmations",
+               confirmations: "users/confirmations"
              }
 
+  # /app/views/devise/registration/edit_details.html.erb
   devise_scope :user do
     get "users/edit_details" => "users/registrations#edit_details"
     patch "users/save_details" => "users/registrations#save_details"
+    # delete "users/destroy_avatar" => "users/registrations#destroy_avatar"
+    # delete "users/destroy_avatar_background" => "users/registrations#destroy_avatar_background"
   end
 
-  # get "users/:id"
-  resources :users, only: [:show]
+  # resources :users, only: [:show]
+  get ":username", to: "users#show", as: "user", constraints: { username: User::USERNAME_REGEX }
 end
