@@ -38,4 +38,8 @@ group :development do
   gem "erb-formatter"
   # Annotate controllers
   gem "chusaku", require: false
+  # Download files for seed data
+  gem "down"
+  # Get images from pexels.com
+  gem "pexels"
 end
