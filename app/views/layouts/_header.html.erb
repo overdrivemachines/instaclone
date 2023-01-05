@@ -15,6 +15,14 @@
         <div class="nav-item-name">Home</div>
       <% end %>
     </li>
+    <% if user_signed_in? %>
+      <li class="nav-item">
+        <%= link_to new_post_path, class: "nav-item-link" do %>
+          <div class="fa-container"><i class="fa-solid fa-plus"></i></div>
+          <div class="nav-item-name">New Post</div>
+        <% end %>
+      </li>
+    <% end %>
     <li class="nav-item">
       <a href="#" class="nav-item-link">
         <div class="fa-container"><i class="fa-solid fa-envelope"></i></div>
