@@ -70,15 +70,15 @@ class User < ApplicationRecord
     avatar_background.variant(resize_to_limit: [500, 500]).processed
   end
 
-  def initialize(args = {})
-    if args
-      (args[:email].strip! && args[:email].downcase!) if args[:email]
-      (args[:username].strip! && args[:username].downcase!) if args[:username]
-      args[:full_name].strip! if args[:full_name]
-      args[:bio].strip! if args[:bio]
-    end
-    super
-  end
+  # def initialize(args = {})
+  #   if args
+  #     (args[:email].strip! && args[:email].downcase!) if args[:email]
+  #     (args[:username].strip! && args[:username].downcase!) if args[:username]
+  #     args[:full_name].strip! if args[:full_name]
+  #     args[:bio].strip! if args[:bio]
+  #   end
+  #   super
+  # end
 
   def strip_and_downcase_fields
     (email.strip! && email.downcase!) unless email.blank?
