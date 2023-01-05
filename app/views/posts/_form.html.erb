@@ -1,0 +1,38 @@
+<%= form_with(model: post) do |form| %>
+  <% if post.errors.any? %>
+    <div class="alert alert-danger mx-3">
+      <ul>
+        <% post.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% if alert %>
+    <div class="alert alert-danger">
+      <%= alert %>
+    </div>
+  <% end %>
+
+  <div class="auth-body">
+    <div class="field">
+      <%= form.label :image %>
+      <%= form.file_field :image %>
+    </div>
+    <div class="field">
+      <%= form.label :caption, "Caption (optional)" %>
+      <%= form.text_area :caption, autofocus: true, class: "form-control" %>
+    </div>
+
+    <div class="field">
+      <%= form.label :location, "Location (optional)" %>
+      <%= form.text_field :location, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="auth-footer">
+    <%= form.submit "Share", class: "btn btn-primary" %>
+    <%= link_to "Cancel", :back, class: "btn btn-secondary mx-2" %>
+  </div>
+<% end %>
