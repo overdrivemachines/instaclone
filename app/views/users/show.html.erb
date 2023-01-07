@@ -1,2 +1,55 @@
-users show page
-<%= @user.inspect %>
+<section class="holygrail-content users-show">
+  <div class="profile-container">
+    <div class="w-940">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-4 d-flex align-items-center justify-content-center">
+            <% if @user.avatar.attached? %>
+              <%= image_tag @user.avatar, class: "user-profile-img" %>
+            <% else %>
+              <%= image_tag "person-placeholder.jpg", class: "user-profile-img" %>
+            <% end %>
+          </div>
+          <div class="col-8">
+            <div class="username-container">
+              <a href="#">
+                <h2><%= @user.username %></h2>
+              </a>
+              <div>
+                <div class="btn-group">
+                  <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    Following
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="#">Unfollow</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <ul class="stats-container">
+              <li><b>3,014</b> posts</li>
+              <li><b>2.1M</b> followers</li>
+              <li><b>23</b> following</li>
+
+            </ul>
+            <div class="bio-container">
+              <p><%= @user.bio %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="posts-container">
+    <div class="w-940">
+      <div class="container">
+        <div class="row g-lg-5 g-md-1">
+          <% @posts.each do |post| %>
+            <%= render post %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
