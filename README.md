@@ -122,4 +122,6 @@ bundle lock --add-platform x86_64-linux
 - Resize Images
   - https://dev.to/mikerogers0/resize-images-with-active-storage-in-rails-481n
   - https://www.bigbinary.com/blog/rails-7-adds-ability-to-use-predefined-variants
+  - https://www.youtube.com/watch?v=1cw6qO1EYGw
 - Save and Delete button - https://dev.to/konnorrogers/escaping-the-traditional-rails-form-4c4o
+- Devise User Model with Roles - https://btihen.me/post_ruby_rails/rails_devise_users_namespaced/
