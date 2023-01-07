@@ -4,25 +4,24 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
 
-  # GET /resource/sign_up
   # def new
   #   super
   # end
 
-  # POST /resource
   # def create
   #   super
   # end
 
-  # GET /resource/edit
   # def edit
   #   super
   # end
 
+  # @route GET /users/edit_details (users_edit_details)
   def edit_details
     @user = current_user
   end
 
+  # @route PATCH /users/save_details (users_save_details)
   def save_details
     redirect_to root_url unless user_signed_in?
     @user = current_user
@@ -51,12 +50,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # DELETE /resource
   # def destroy
   #   super
   # end
 
-  # GET /resource/cancel
   # Forces the session data which is usually expired after sign
   # in to be expired now. This is useful if the user wants to
   # cancel oauth signing in/up in the middle of the process,

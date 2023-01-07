@@ -1,8 +1,9 @@
 class UsersController < ApplicationController
   before_action :set_user
 
-  # GET /:username
+  # @route GET /:username (user)
   def show
+    @posts = @user.posts.all
   end
 
   private
