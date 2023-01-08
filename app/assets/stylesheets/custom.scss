@@ -696,6 +696,9 @@ section.users-show {
     h2 {
       margin-bottom: 0;
     }
+    h2 span {
+      color: var(--color-text1);
+    }
     .username-container {
       display: flex;
       justify-content: space-between;
