@@ -57,7 +57,7 @@
       <div class="container">
         <div class="row g-lg-5 g-md-1">
           <% @posts.each do |post| %>
-            <%= render post %>
+            <%= render partial: "posts/post_thumb", locals: {post: post} %>
           <% end %>
         </div>
       </div>
