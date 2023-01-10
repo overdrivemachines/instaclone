@@ -236,8 +236,6 @@ ul.main-nav {
   .nav-item-name {
     display: block;
     font-weight: 700;
-    // font-size: 0.875em;
-    // margin-top: 0.1em;
   }
 }
 
@@ -359,7 +357,7 @@ ul.main-nav .dd {
     // border: 1px solid yellow;
   }
   .middle-content {
-    display: flex;
+    // display: flex;
     max-width: 680px;
     margin-left: 1em;
     margin-right: 1em;
@@ -367,6 +365,14 @@ ul.main-nav .dd {
   aside.left-content,
   aside.right-content {
     flex: 1;
+  }
+
+  .post-image {
+    max-width: none;
+    width: 100%;
+    max-height: 680px;
+    object-fit: cover;
+    margin: 0.5em 0 1em 0;
   }
 }
 
@@ -377,6 +383,16 @@ ul.main-nav .dd {
   padding: 1em 0;
   margin-bottom: 1em;
 }
+.post-image-container {
+  text-align: center;
+}
+.post-image {
+  max-width: 615px;
+  height: 615px;
+  margin: auto;
+  object-fit: cover;
+}
+
 .post-author-container {
   padding-left: 1em;
   padding-right: 1em;
@@ -396,7 +412,8 @@ ul.main-nav .dd {
   }
 }
 .post-author-info {
-  flex: 1;
+  // flex: 1;
+  text-align: left;
   padding-left: 0.66em;
   .name {
     font-size: 1.25em;
@@ -412,12 +429,12 @@ ul.main-nav .dd {
   }
 }
 .post-ellipsis {
+  flex: 1;
+  text-align: right;
 }
 .post-content {
   padding: 0.5em 0;
-}
-.post-image {
-  max-width: 100%;
+  text-align: center;
 }
 
 .post-actions {
@@ -459,6 +476,31 @@ ul.main-nav .dd {
 .comments-container {
   padding: 0.25em 1.5em;
   // font-size: 0.875em;
+  overflow-x: hidden;
+  overflow-y: auto;
+  max-height: 350px;
+
+  &::-webkit-scrollbar {
+    width: 14px;
+    // height: 18px;
+  }
+  &::-webkit-scrollbar-thumb {
+    height: 6px;
+    border: 4px solid rgba(0, 0, 0, 0);
+    background-clip: padding-box;
+    background-color: rgba(255, 255, 255, 0.2);
+    -webkit-border-radius: 7px;
+    -webkit-box-shadow: inset -1px -1px 0px rgba(0, 0, 0, 0.05), inset 1px 1px 0px rgba(0, 0, 0, 0.05);
+  }
+  &::-webkit-scrollbar-button {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+
+  &::-webkit-scrollbar-corner {
+    background-color: transparent;
+  }
 
   .comment {
     display: flex;
@@ -481,8 +523,8 @@ ul.main-nav .dd {
 .new-comment-container {
   font-size: 0.875em;
   // margin-top: 1em;
-  padding: 0.5em 1.5em 0 1.5em;
-  border-top: 1px solid var(--color-border);
+  padding: 16px 1.5em 0 1.5em;
+  border-top: 1px solid var(--color-border2);
 }
 
 .new-comment-form {
@@ -536,6 +578,7 @@ ul.main-nav .dd {
   width: 96px;
   height: 96px;
   margin-top: -43px;
+  object-fit: cover;
 }
 
 .my-profile-name {
@@ -825,57 +868,23 @@ section.users-show {
 //////////////////////////////////////////////////////////
 section.posts-show {
   .post-container {
+    display: flex;
+    width: 1025px;
     margin-left: auto;
     margin-right: auto;
     padding: 0;
-    max-width: 1028px;
-    // max-height: 600px;
-    // border: 1px solid green;
   }
   .post-image-container {
-    padding: 0;
-    // border: 1px solid yellow;
+    width: 60%;
   }
-  .post-image {
-    height: 600px;
-    // width: 600px;
-    width: 100%;
-    object-fit: cover;
+  .post-items-container {
+    width: 40%;
+    padding: 1em 0;
   }
-  .post-right-container {
-    padding-top: 1.875em;
-    padding-bottom: 1em;
-  }
+
   .comments-container {
-    overflow-x: hidden;
-    overflow-y: auto;
-    // border: 1px solid green;
-    max-height: 320px;
-
-    &::-webkit-scrollbar {
-      width: 14px;
-      // height: 18px;
-    }
-    &::-webkit-scrollbar-thumb {
-      height: 6px;
-      border: 4px solid rgba(0, 0, 0, 0);
-      background-clip: padding-box;
-      background-color: rgba(255, 255, 255, 0.2);
-      -webkit-border-radius: 7px;
-      -webkit-box-shadow: inset -1px -1px 0px rgba(0, 0, 0, 0.05), inset 1px 1px 0px rgba(0, 0, 0, 0.05);
-    }
-    &::-webkit-scrollbar-button {
-      display: none;
-      width: 0;
-      height: 0;
-    }
-
-    &::-webkit-scrollbar-corner {
-      background-color: transparent;
-    }
   }
   .new-comment-container {
-    margin-top: 1em;
   }
 }
 
