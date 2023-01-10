@@ -125,6 +125,13 @@ h3 {
   border-radius: 0;
 }
 
+.dropdown-menu-dark {
+  --bs-dropdown-color: var(--color-text2);
+  --bs-dropdown-bg: var(--color-input-bg);
+  --bs-dropdown-link-color: var(--color-text2);
+  --bs-dropdown-link-active-bg: var(--color-text1);
+}
+
 .b1 {
   border: 1px solid red;
 }
@@ -372,7 +379,7 @@ ul.main-nav .dd {
 }
 .post-author-container {
   padding-left: 1em;
-  padding-right: 2em;
+  padding-right: 1em;
   padding-bottom: 0.5em;
   width: 100%;
   display: flex;
