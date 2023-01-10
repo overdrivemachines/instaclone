@@ -1,2 +1,3 @@
 attributes: content,foreign_key
 filetype: png
+exclude: ActiveRecord::SchemaMigration,ActiveStorage::Blob,ActiveStorage::VariantRecord
