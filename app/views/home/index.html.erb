@@ -3,60 +3,9 @@
     <%= render partial: "my_profile_info" %>
   </aside>
   <div class="middle-content">
-    <div class="post-container">
-      <div class="post-author-container">
-        <div class="post-author-ic">
-          <img src="https://cdn.dribbble.com/users/1788965/avatars/small/7723792f45aa188dd25e5d4167dbe8b6.jpeg" alt="">
-        </div>
-        <div class="post-author-info">
-          <div class="name"><a href="#">Alfred King <span class="username">@alfredking</span></a></div>
-          <div class="ago">Posted 2 hours ago</div>
-        </div>
-        <div class="post-ellipsis"><i class="fa-solid fa-ellipsis"></i></div>
-      </div>
-      <div class="post-content">
-        <img src="https://images.unsplash.com/photo-1671471983193-f76687e0a4fd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="" class="post-image">
-      </div>
-      <div class="post-actions">
-        <div class="left">
-          <button class="btn-fa"><i class="fa-regular fa-heart"></i></button>
-          <button class="btn-fa"><i class="fa-solid fa-heart liked"></i></button>
-          <button class="btn-fa"><i class="fa-regular fa-comment"></i></button>
-        </div>
-        <div class="right">
-          <button class="btn-fa"><i class="fa-regular fa-bookmark"></i></button>
-        </div>
-
-      </div>
-      <div class="post-stats">
-        <div class="likes-count">2,306 likes</div>
-        <div class="comments-count">45 Comments</div>
-      </div>
-      <div class="comments-container">
-        <div class="comment">
-          <div class="comment-content"><b>
-              jacobwiedrich101</b> Some good teamwork is necessary, we can only fly so high solo. 🔥🙌👏 Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis, explicabo illo voluptates possimus repellat tenetur</div>
-          <div class="comment-like"><button class="btn-fa"><i class="fa-regular fa-heart"></i></button></div>
-        </div>
-
-        <div class="comment">
-          <div class="comment-content"><b>
-              jacobwiedrich101</b> Some good teamwork is necessary, we can only fly so high solo. 🔥🙌👏 Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis, explicabo illo voluptates possimus repellat tenetur</div>
-          <div class="comment-like"><button class="btn-fa"><i class="fa-regular fa-heart"></i></button></div>
-        </div>
-
-        <a href="#" class="view-all-link">View all 45 comments</a>
-
-      </div>
-      <div class="new-comment-container">
-        <form action="#" class="new-comment-form">
-
-          <label for="new_comment" class="col-form-label">Comment</label>
-          <textarea class="form-control" id="new_comment"></textarea>
-          <a href="" class="btn btn-primary">Post</a>
-        </form>
-      </div>
-    </div>
+    <% @posts.each do |post| %>
+      <%= render post %>
+    <% end %>
   </div>
   <aside class="right-content">
     <div class="post-container px-2">
