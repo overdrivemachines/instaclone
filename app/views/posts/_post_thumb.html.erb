@@ -1,13 +1,14 @@
+<%# partial used by users/show.html.erb %>
+<%# partial only displays small image of the post and number of likes and comments on hover  %>
 <div class="col-4 post" id="<%= dom_id post %>">
-  <%# link_to post, data: { turbo_frame: "post-show-modal-container" } do %>
-    <%= link_to post do %>
-      <%= image_tag post.image_as_medium_thumbnail, class: "post-image" %>
-      <div class="post-middle">
-        <div class="stats">
-          <%# TODO Update the number of likes and comments %>
-          <span><i class="fa-solid fa-heart"></i> 2,329 </span>
-          <span><i class="fa-solid fa-comment"></i> 2,329 </span>
-        </div>
+  <%= link_to post do %>
+    <%= image_tag post.image_as_medium_thumbnail, class: "post-image" %>
+    <div class="post-middle">
+      <div class="stats">
+        <%# TODO Update the number of likes and comments %>
+        <span><i class="fa-solid fa-heart"></i> 2,329 </span>
+        <span><i class="fa-solid fa-comment"></i> 2,329 </span>
       </div>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
+</div>
