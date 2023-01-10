@@ -1,0 +1,68 @@
+<%# Partial used by home/index.html.erb and posts/show.html.erb %>
+<div class="post-container" id="<%= dom_id post %>">
+  <div class="post-image-container">
+    <% if controller_name == "home" && action_name == "index" %>
+      <%= render partial: "posts/post_author_container", locals: {post: post} %>
+    <% end %>
+    <%= image_tag post.image, class: "post-image" %>
+  </div>
+  <div class="post-items-container">
+    <% if controller_name != "home" %>
+      <%= render partial: "posts/post_author_container", locals: {post: post} %>
+    <% end %>
+    <div class="post-actions">
+      <div class="left">
+        <button class="btn-fa"><i class="fa-regular fa-heart"></i></button>
+        <button class="btn-fa"><i class="fa-solid fa-heart liked"></i></button>
+        <button class="btn-fa"><i class="fa-regular fa-comment"></i></button>
+      </div>
+      <div class="right">
+        <button class="btn-fa"><i class="fa-regular fa-bookmark"></i></button>
+      </div>
+
+    </div>
+    <div class="post-stats">
+      <div class="likes-count">2,306 likes</div>
+      <div class="comments-count">45 Comments</div>
+    </div>
+    <div class="comments-container">
+      <%# The first comment is the post's caption %>
+      <% if !post.caption.blank? %>
+        <div class="comment">
+          <div class="comment-content">
+            <%= link_to post.user.username, post.user %> <%= post.caption %>
+          </div>
+          <div class="comment-like"><button class="btn-fa"><i class="fa-regular fa-heart"></i></button></div>
+        </div>
+      <% end %>
+
+      <div class="comment">
+        <div class="comment-content"><b>
+            jacobwiedrich101</b> Some good teamwork is necessary, we can only fly so high solo. 🔥🙌👏 Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis, explicabo illo voluptates possimus repellat tenetur</div>
+        <div class="comment-like"><button class="btn-fa"><i class="fa-regular fa-heart"></i></button></div>
+      </div>
+
+      <div class="comment">
+        <div class="comment-content"><b>
+            jacobwiedrich101</b> Some good teamwork is necessary, we can only fly so high solo. 🔥🙌👏 Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis, explicabo illo voluptates possimus repellat tenetur
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit odio deserunt harum, quo dicta labore porro error minima natus voluptate atque, minus sint corporis beatae repellat temporibus at fugiat. Impedit!
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odio repellendus animi ratione repellat, molestias aliquam? Ducimus porro in quam aut, voluptate ex dolorem quis. Nulla necessitatibus eius cumque accusantium nemo!
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Suscipit exercitationem quaerat doloribus, labore cum amet voluptatibus et quo voluptates laboriosam quod enim facere nihil atque neque ipsum ea maxime voluptas?
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat asperiores magnam eaque neque iusto placeat vitae et, quaerat esse aut quas recusandae doloribus labore officiis possimus veniam in corrupti aperiam!
+        </div>
+        <div class="comment-like"><button class="btn-fa"><i class="fa-regular fa-heart"></i></button></div>
+      </div>
+
+      <a href="#" class="view-all-link">View all 45 comments</a>
+
+    </div>
+    <div class="new-comment-container">
+      <form action="#" class="new-comment-form">
+
+        <!--           <label for="new_comment" class="col-form-label">Comment</label> -->
+        <textarea class="form-control" id="new_comment"></textarea>
+        <a href="" class="btn btn-primary">Post</a>
+      </form>
+    </div>
+  </div>
+</div>

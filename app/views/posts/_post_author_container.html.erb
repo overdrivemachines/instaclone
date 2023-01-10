@@ -1,0 +1,40 @@
+<%# This partial is used by another partial: _post.html.erb %>
+<%# This partial just displays a post's author info %>
+<div class="post-author-container">
+  <div class="post-author-ic">
+    <%= image_tag post.user.avatar_as_thumbnail %>
+  </div>
+  <div class="post-author-info">
+    <div class="name">
+      <%= link_to post.user do %>
+        <%= post.user.full_name %>
+        <span class="username">@<%= post.user.username %></span>
+      <% end %>
+    </div>
+    <div class="ago">Posted <%= time_ago_in_words(post.created_at) %> ago</div>
+  </div>
+
+  <div class="post-ellipsis">
+    <div class="btn-group">
+      <a href="#" class="p-2" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="fa-solid fa-ellipsis " ></i>
+      </a>
+      <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark ">
+        <%# TODO: change unfollow to follow %>
+        <% if post.user_id == current_user.id %>
+          <li>
+            <%= link_to "Edit", edit_post_path(post), class: "dropdown-item" %>
+          </li>
+          <li>
+            <%= link_to "Delete", post, data: { turbo_method: :delete, turbo_frame: "_top" }, class: "dropdown-item text-danger" %>
+          </li>
+        <% else %>
+          <li><a class="dropdown-item" href="#">Follow</a></li>
+        <% end %>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" href="#">Copy Link</a></li>
+        <li><a class="dropdown-item" href="#">Share</a></li>
+      </ul>
+    </div>
+  </div>
+</div>

@@ -125,3 +125,6 @@ bundle lock --add-platform x86_64-linux
   - https://www.youtube.com/watch?v=1cw6qO1EYGw
 - Save and Delete button - https://dev.to/konnorrogers/escaping-the-traditional-rails-form-4c4o
 - Devise User Model with Roles - https://btihen.me/post_ruby_rails/rails_devise_users_namespaced/
+- Counter Caches
+  - https://blog.appsignal.com/2018/06/19/activerecords-counter-cache.html
+  - https://guides.rubyonrails.org/association_basics.html#options-for-belongs-to-counter-cache
