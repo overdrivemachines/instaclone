@@ -26,6 +26,14 @@
 #                               POST   /users/unlock(.:format)                                 devise/unlocks#create
 #            users_edit_details GET    /users/edit_details(.:format)                           users/registrations#edit_details
 #            users_save_details PATCH  /users/save_details(.:format)                           users/registrations#save_details
+#                 post_comments GET    /posts/:post_id/comments(.:format)                      comments#index
+#                               POST   /posts/:post_id/comments(.:format)                      comments#create
+#              new_post_comment GET    /posts/:post_id/comments/new(.:format)                  comments#new
+#             edit_post_comment GET    /posts/:post_id/comments/:id/edit(.:format)             comments#edit
+#                  post_comment GET    /posts/:post_id/comments/:id(.:format)                  comments#show
+#                               PATCH  /posts/:post_id/comments/:id(.:format)                  comments#update
+#                               PUT    /posts/:post_id/comments/:id(.:format)                  comments#update
+#                               DELETE /posts/:post_id/comments/:id(.:format)                  comments#destroy
 #                         posts POST   /posts(.:format)                                        posts#create
 #                      new_post GET    /posts/new(.:format)                                    posts#new
 #                     edit_post GET    /posts/:id/edit(.:format)                               posts#edit
@@ -56,7 +64,9 @@ Rails.application.routes.draw do
     # delete "users/destroy_avatar_background" => "users/registrations#destroy_avatar_background"
   end
 
-  resources :posts, except: [:index]
+  resources :posts, except: [:index] do
+    resources :comments
+  end
 
   # resources :users, only: [:show]
   get ":username", to: "users#show", as: "user", constraints: { username: User::USERNAME_REGEX }

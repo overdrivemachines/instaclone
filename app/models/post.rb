@@ -2,12 +2,13 @@
 #
 # Table name: posts
 #
-#  id         :bigint           not null, primary key
-#  caption    :text
-#  location   :string
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  user_id    :bigint           not null
+#  id             :bigint           not null, primary key
+#  caption        :text
+#  comments_count :integer
+#  location       :string
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  user_id        :bigint           not null
 #
 # Indexes
 #
@@ -19,6 +20,7 @@
 #
 class Post < ApplicationRecord
   belongs_to :user
+  has_many :comments
 
   has_one_attached :image
 
