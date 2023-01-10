@@ -25,7 +25,28 @@
             <div class="ago">Posted <%= time_ago_in_words(@post.created_at) %> ago</div>
           </div>
           <div class="post-ellipsis">
-            <i class="fa-solid fa-ellipsis"></i>
+            <div class="btn-group">
+              <a href="#" class="p-2" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa-solid fa-ellipsis " ></i>
+
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark ">
+                <%# TODO: change unfollow to follow %>
+                <% if @post.user_id == current_user.id %>
+                  <li>
+                    <%= link_to "Edit", edit_post_path(@post), class: "dropdown-item" %>
+                  </li>
+                  <li>
+                    <%= link_to "Delete", @post, data: { turbo_method: :delete, turbo_frame: "_top" }, class: "dropdown-item text-danger" %>
+                  </li>
+                <% else %>
+                  <li><a class="dropdown-item" href="#">Follow</a></li>
+                <% end %>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">Copy Link</a></li>
+                <li><a class="dropdown-item" href="#">Share</a></li>
+              </ul>
+            </div>
           </div>
         </div>
         <div class="post-actions">
@@ -44,11 +65,14 @@
           <div class="comments-count">45 Comments</div>
         </div>
         <div class="comments-container">
-          <div class="comment">
-            <div class="comment-content"><b>
-                jacobwiedrich101</b> Some good teamwork is necessary, we can only fly so high solo. 🔥🙌👏 Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis, explicabo illo voluptates possimus repellat tenetur</div>
-            <div class="comment-like"><button class="btn-fa"><i class="fa-regular fa-heart"></i></button></div>
-          </div>
+          <% if !@post.caption.blank? %>
+            <div class="comment">
+              <div class="comment-content">
+                <%= link_to @post.user.username, @post.user %> <%= @post.caption %>
+              </div>
+              <div class="comment-like"><button class="btn-fa"><i class="fa-regular fa-heart"></i></button></div>
+            </div>
+          <% end %>
 
           <div class="comment">
             <div class="comment-content"><b>
