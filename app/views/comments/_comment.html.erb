@@ -1,22 +1,6 @@
-<div id="<%= dom_id comment %>">
-  <p>
-    <strong>Body:</strong>
-    <%= comment.body %>
-  </p>
-
-  <p>
-    <strong>Post:</strong>
-    <%= comment.post_id %>
-  </p>
-
-  <p>
-    <strong>User:</strong>
-    <%= comment.user_id %>
-  </p>
-
-  <p>
-    <strong>Parent:</strong>
-    <%= comment.parent_id %>
-  </p>
-
+<div class="comment" id="<%= dom_id comment %>">
+  <div class="comment-content">
+    <%= link_to comment.user.username, user_path(comment.user) %> <%= comment.body %>
+  </div>
+  <div class="comment-like"><button class="btn-fa"><i class="fa-regular fa-heart"></i></button></div>
 </div>
