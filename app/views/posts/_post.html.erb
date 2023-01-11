@@ -36,11 +36,20 @@
         </div>
       <% end %>
 
-      <% post.comments.each do |comment| %>
-        <%= render comment %>
-      <% end %>
+      <% if controller_name == "home" && action_name == "index" %>
+        <%# TODO: Render comment with most number of likes %>
+        <%= render post.comments.first %>
 
-      <a href="#" class="view-all-link">View all 45 comments</a>
+        <%# "View all 32 comments" link %>
+        <% if post.comments.size > 1 %>
+          <%= link_to "View all #{post.comments.size} comments", post, class: "view-all-link" %>
+        <% end %>
+      <% else %>
+        <%# Render all comments %>
+        <% post.comments.each do |comment| %>
+          <%= render comment %>
+        <% end %>
+      <% end %>
 
     </div>
     <div class="new-comment-container">
