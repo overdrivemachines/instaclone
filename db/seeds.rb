@@ -51,7 +51,6 @@ def download_images
   end
 end
 
-
 if (avatar_files_path.size <= 4) || (avatar_background_files_path.size <= 4) || (posts_files_path.size <= 20)
   # Download avatar, avatar background and images for posts from pexels.com
   download_images
@@ -65,7 +64,7 @@ avatar_files_path = Dir[Rails.root.join('db/seeds/avatars/*.jpeg')]
 avatar_background_files_path = Dir[Rails.root.join('db/seeds/avatar_backgrounds/*.jpeg')]
 posts_files_path = Dir[Rails.root.join('db/seeds/posts/*.jpeg')]
 
-User.all.each do |user|
+User.find_each do |user|
   # Attach avatar and avatar_background for each user
   user.avatar.attach(io: File.open(avatar_files_path.sample), filename: "#{Faker::Internet.base64}.jpeg")
   user.avatar_background.attach(io: File.open(avatar_background_files_path.sample),
@@ -75,8 +74,26 @@ User.all.each do |user|
   # Create 50 posts for each user
   50.times do
     post = user.posts.build(caption: Faker::Quote.most_interesting_man_in_the_world,
-                           location: Faker::Address.city(options: { with_state: true }))
+                            location: Faker::Address.city(options: { with_state: true }))
     post.image.attach(io: File.open(posts_files_path.sample), filename: "#{Faker::Internet.base64}.jpeg")
     post.save
+  end
+end
+
+# Create comments
+
+def random_user_id
+  User.offset(rand(User.count)).first.id
+end
+
+Post.find_each do |post|
+  rand(1..5).times do
+    # create top level comment
+    post.comments.create(body: Faker::Quote.matz, user_id: random_user_id)
+  end
+
+  rand(1..5).times do
+    # response comment to top level comment
+    post.comments.create(body: Faker::Quote.matz, user_id: random_user_id, parent_id: post.comments.pluck(:id).sample)
   end
 end
