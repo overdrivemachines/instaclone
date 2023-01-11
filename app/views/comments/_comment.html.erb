@@ -4,3 +4,8 @@
   </div>
   <div class="comment-like"><button class="btn-fa"><i class="fa-regular fa-heart"></i></button></div>
 </div>
+<% if comment.replies.exists? %>
+  <div class="ps-4">
+    <%= render comment.replies %>
+  </div>
+<% end %>
