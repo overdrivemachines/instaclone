@@ -27,20 +27,6 @@ class Post < ApplicationRecord
   # resize image so that the width or the height are at least 293 pixels
   # does not resize images smaller than 293 pixels
   def image_as_medium_thumbnail
-    if image_width > image_height
-      image.variant(resize_to_limit: [nil, 293]).processed
-    else
-      image.variant(resize_to_limit: [293, nil]).processed
-    end
-  end
-
-  # get image's width
-  def image_width
-    image.metadata[:width]
-  end
-
-  # get image's height
-  def image_height
-    image.metadata[:height]
+    image.variant(resize_to_fill: [293, 293]).processed
   end
 end
