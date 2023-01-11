@@ -13,7 +13,7 @@
           <div class="col-8">
             <div class="username-container">
               <%= link_to @user do %>
-                <h2><%= @user.full_name %> <span>@<%= @user.username %></span></h2>
+                <h2 class="text-start"><%= @user.full_name %> <span>@<%= @user.username %></span></h2>
               <% end %>
               <% if current_user != @user %>
                 <div>
@@ -30,7 +30,7 @@
               <% end %>
             </div>
             <ul class="stats-container">
-              <li><b>3,014</b> posts</li>
+              <li><b><%= @user.posts.size %></b> posts</li>
               <li><b>2.1M</b> followers</li>
               <li><b>23</b> following</li>
             </ul>

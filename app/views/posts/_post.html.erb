@@ -25,7 +25,7 @@
       <div class="likes-count">0 likes</div>
       <div class="comments-count"><%= pluralize(post.comments.size, 'Comment') %></div>
     </div>
-    <div class="comments-container">
+    <div class="comments-container" id="<%= dom_id(post, "comments_container") %>">
       <%# The first comment is the post's caption %>
       <% if !post.caption.blank? %>
         <div class="comment">
@@ -45,18 +45,15 @@
           <%= link_to "View all #{post.comments.size} comments", post, class: "view-all-link" %>
         <% end %>
       <% else %>
-        <%# Render all comments %>
-        <% post.comments.each do |comment| %>
-          <%= render comment %>
-        <% end %>
+        <%# Render all comments that don't have parents %>
+        <%# _comment.html.erb partial will look for comment responses and display them %>
+        <%# Quicker to display id in asc order rather than created_at in asc order %>
+        <%= render post.comments.where(parent_id: nil).order(id: :asc) %>
       <% end %>
 
     </div>
     <div class="new-comment-container">
-      <%= form_with(model: [post, post.comments.new], class: "new-comment-form") do |form| %>
-        <%= form.text_area :body, class: "form-control" %>
-        <%= form.submit "Post", class: "btn btn-primary" %>
-      <% end %>
+      <%= render partial: "comments/form", locals: { post: post, comment: post.comments.new } %>
     </div>
   </div>
 </div>

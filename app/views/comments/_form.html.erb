@@ -1,37 +1,17 @@
-<%= form_with(model: comment) do |form| %>
+<%# New/Edit Comment form partial. Used by posts/_post.html.erb partial %>
+<%= form_with(model: [post, comment], class: "comment-form", id: "#{dom_id(comment, dom_id(post))}_form") do |form| %>
   <% if comment.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
-
-      <ul>
-        <% comment.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+    <div class="text-danger mb-2">
+      Comment <%= comment.errors.full_messages.to_sentence %>
     </div>
   <% end %>
-
-  <div>
-    <%= form.label :body, style: "display: block" %>
-    <%= form.text_area :body %>
-  </div>
-
-  <div>
-    <%= form.label :post_id, style: "display: block" %>
-    <%= form.text_field :post_id %>
-  </div>
-
-  <div>
-    <%= form.label :user_id, style: "display: block" %>
-    <%= form.text_field :user_id %>
-  </div>
-
-  <div>
-    <%= form.label :parent_id, style: "display: block" %>
-    <%= form.number_field :parent_id %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+  <% if notice %>
+    <div class="text-success mb-2">
+      <%= notice %>
+    </div>
+  <% end %>
+  <div class="form-body">
+    <%= form.text_area :body, class: "form-control" %>
+    <%= form.submit "Post", class: "btn btn-primary" %>
   </div>
 <% end %>

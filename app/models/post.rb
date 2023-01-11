@@ -26,6 +26,7 @@ class Post < ApplicationRecord
 
   # resize image so that the width or the height are at least 293 pixels
   # does not resize images smaller than 293 pixels
+  # https://github.com/janko/image_processing/blob/master/doc/vips.md
   def image_as_medium_thumbnail
     image.variant(resize_to_fill: [293, 293]).processed
   end

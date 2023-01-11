@@ -29,7 +29,7 @@ class Comment < ApplicationRecord
   has_many :replies, class_name: "Comment", foreign_key: :parent_id, dependent: :destroy
   before_validation :set_correct_parent
 
-  validates :body, presence: true
+  validates :body, presence: true, length: { maximum: 2200 }
 
   def set_correct_parent
     # top level comment, there is no parent

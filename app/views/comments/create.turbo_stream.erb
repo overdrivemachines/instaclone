@@ -1,0 +1,8 @@
+<%# Append todo partial to #comments_container_post_45 %>
+<%= turbo_stream.append "#{dom_id(@post, "comments_container")}" do %>
+  <%= render @comment %>
+<% end %>
+<%# replace #new_comment_form_post_45 with another new form %>
+<%= turbo_stream.replace "#{dom_id(@new_comment, dom_id(@post))}_form" do %>
+  <%= render partial: "comments/form", locals: { post: @post, comment: @new_comment } %>
+<% end %>

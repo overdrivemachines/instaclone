@@ -1,32 +1,23 @@
 class CommentsController < ApplicationController
-  before_action :set_comment, only: %i[ show edit update destroy ]
-
-  # @route GET /posts/:post_id/comments (post_comments)
-  def index
-    @comments = Comment.all
-  end
-
-  # @route GET /posts/:post_id/comments/:id (post_comment)
-  def show
-  end
-
-  # @route GET /posts/:post_id/comments/new (new_post_comment)
-  def new
-    @comment = Comment.new
-  end
+  before_action :authenticate_user!
+  before_action :set_comment, only: %i[ edit update destroy ]
+  before_action :set_post
 
   # @route GET /posts/:post_id/comments/:id/edit (edit_post_comment)
-  def edit
-  end
+  def edit; end
 
   # @route POST /posts/:post_id/comments (post_comments)
   def create
-    @comment = Comment.new(comment_params)
+    @comment = @post.comments.new(comment_params)
+    @comment.user_id = current_user.id
 
-    if @comment.save
-      redirect_to @comment, notice: "Comment was successfully created."
+    @new_comment = @post.comments.new
+
+    if !@comment.save
+      render turbo_stream: turbo_stream.replace("#{helpers.dom_id(@comment, helpers.dom_id(@post))}_form", partial: "form",
+                                                                                                           locals: { post: @post, comment: @comment })
     else
-      render :new, status: :unprocessable_entity
+      flash.now[:notice] = "Comment added!"
     end
   end
 
@@ -47,13 +38,18 @@ class CommentsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_comment
-      @comment = Comment.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def comment_params
-      params.require(:comment).permit(:body, :post_id, :user_id, :parent_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_comment
+    @comment = Comment.find(params[:id])
+  end
+
+  def set_post
+    @post = Post.find(params[:post_id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def comment_params
+    params.require(:comment).permit(:body, :post_id, :user_id, :parent_id)
+  end
 end

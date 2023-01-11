@@ -2,12 +2,16 @@
 <%# partial only displays small image of the post and number of likes and comments on hover  %>
 <div class="col-4 post" id="<%= dom_id post %>">
   <%= link_to post do %>
-    <%= image_tag post.image_as_medium_thumbnail, class: "post-image" %>
+    <% if post.image.attached? %>
+      <%= image_tag post.image_as_medium_thumbnail, class: "post-image" %>
+    <% else %>
+      <%= image_tag "post-placeholder.png", class: "post-image" %>
+    <% end %>
     <div class="post-middle">
       <div class="stats">
         <%# TODO Update the number of likes and comments %>
         <span><i class="fa-solid fa-heart"></i> 2,329 </span>
-        <span><i class="fa-solid fa-comment"></i> 2,329 </span>
+        <span><i class="fa-solid fa-comment"></i> <%= post.comments.size %> </span>
       </div>
     </div>
   <% end %>
