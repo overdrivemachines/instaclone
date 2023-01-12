@@ -11,7 +11,9 @@
     </div>
   <% end %>
   <div class="form-body">
-    <%= form.text_area :body, class: "form-control" %>
+    <%# In comment_controller.js, the following text area is referred to as "this.txtareaTarget" %>
+    <%# Also, resizeTextArea() is called each time the user  %>
+    <%= form.text_area :body, class: "form-control", id: "#{dom_id(comment)}_body", data: { "comment-target": "txtarea" , action: "input->comment#resizeTextArea"} %>
     <%= form.submit "Post", class: "btn btn-primary" %>
   </div>
 <% end %>
