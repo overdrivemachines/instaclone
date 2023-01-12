@@ -46,4 +46,19 @@ document.addEventListener("turbo:load", () => {
   }
 
   window.returnToTop = returnToTop;
+
+  //////////////////////////////////////////////////
+  // Adjust Textarea height (for new comments)
+  //////////////////////////////////////////////////
+  const textareas = document.getElementsByTagName("textarea");
+
+  let textarea;
+
+  // textareas is a
+  Array.from(textareas).forEach(function (textarea) {
+    textarea.addEventListener("input", function (e) {
+      this.style.height = "auto";
+      this.style.height = this.scrollHeight + "px";
+    });
+  });
 });
