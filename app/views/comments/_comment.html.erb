@@ -1,12 +1,36 @@
-<div class="comment" id="<%= dom_id comment %>">
-  <div class="comment-content">
-    <%= link_to comment.user.username, user_path(comment.user) %> <%= comment.body %>
-    <%# TODO: Add hours ago, number of likes and reply button %>
+<%# every comment is wrapped in a turbo frame tag because we want to replace it  %>
+<%# with another turbo frame tag in comments/edit.html.erb %>
+<%= turbo_frame_tag dom_id(comment) do %>
+  <div class="comment">
+    <div class="comment-content">
+      <%= link_to comment.user.username, user_path(comment.user) %> <%= comment.body %>
+      <%# TODO: Add hours ago, number of likes and reply button %>
+      <div class="comment-details">
+        <%= time_ago_in_words(comment.created_at) %> ago • Reply
+        <% if comment.user_id == current_user.id %>
+          <div class="btn-group">
+            <a href="#" class="p-2" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa-solid fa-ellipsis " ></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark ">
+              <%# TODO: change unfollow to follow %>
+              <li>
+                <%= link_to "Edit", edit_post_comment_path(comment.post, comment), class: "dropdown-item" %>
+              </li>
+              <li>
+                <%= link_to "Delete", post_comment_path(comment.post, comment), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: "dropdown-item text-danger" %>
+              </li>
+            </ul>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="comment-like"><button class="btn-fa"><i class="fa-regular fa-heart"></i></button></div>
   </div>
-  <div class="comment-like"><button class="btn-fa"><i class="fa-regular fa-heart"></i></button></div>
-</div>
+<% end %>
 <% if comment.replies.exists? %>
   <div class="ps-4">
+    <%# recursive call to _comment.html.erb partial %>
     <%= render comment.replies %>
   </div>
 <% end %>
