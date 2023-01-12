@@ -65,6 +65,10 @@ hr {
   border: 1px solid var(--color-text1);
 }
 
+turbo-frame {
+  width: 100%;
+}
+
 .btn-primary,
 .btn-primary:hover,
 .btn-primary:active,
@@ -80,7 +84,7 @@ hr {
 .btn:active,
 .btn:visited,
 .btn:focus {
-  font-size: 1.33em;
+  font-size: 18px;
   text-decoration: none !important;
   // outline: none;
   // box-shadow: none;
@@ -90,7 +94,7 @@ hr {
 .form-control:active,
 .form-control:focus {
   font-family: "League Spartan", sans-serif;
-  font-size: 1.33em;
+  font-size: 18px;
   color: var(--color-text2);
   background: var(--color-input-bg);
 
@@ -108,18 +112,18 @@ hr {
 }
 
 .field label {
-  font-size: 1.33em;
+  font-size: 18px;
 }
 
 h3 {
-  font-size: 1.33em;
+  font-size: 18px;
   font-weight: 700;
 }
 
 .msg-container {
   width: 100%;
   padding: 1em;
-  font-size: 1.33em;
+  font-size: 18px;
   background: var(--color-input-bg);
   color: var(--color-text2);
   border-radius: 0;
@@ -192,7 +196,7 @@ h3 {
   font-size: 2em;
 }
 .modal-body li {
-  font-size: 1.33em;
+  font-size: 18px;
 }
 .modal-footer {
   border-color: var(--color-border2);
@@ -245,7 +249,7 @@ ul.main-nav {
 }
 
 ul.main-nav .dd {
-  margin-left: 1.33em;
+  margin-left: 18px;
 
   .dropdown-menu {
     --bs-dropdown-min-width: 12rem;
@@ -307,7 +311,7 @@ ul.main-nav .dd {
   }
 
   .alert {
-    font-size: 1.33em;
+    font-size: 18px;
     margin-bottom: 0;
     ul {
       margin-bottom: 0;
@@ -335,7 +339,7 @@ ul.main-nav .dd {
 .shared-links {
   padding: 1em;
   a {
-    font-size: 1.33em;
+    font-size: 18px;
     display: block;
     margin: 0.5em 0;
   }
@@ -503,6 +507,7 @@ ul.main-nav .dd {
   }
 
   .comment {
+    width: 100%;
     display: flex;
     margin-bottom: 0.6em;
     .comment-content {
@@ -513,6 +518,10 @@ ul.main-nav .dd {
       margin-right: 0;
       font-size: 0.875em;
     }
+  }
+
+  .comment-details {
+    color: var(--color-text1);
   }
 
   .view-all-link {
@@ -530,6 +539,7 @@ ul.main-nav .dd {
 }
 
 .comment-form {
+  width: 100%;
   .form-body {
     display: flex;
     align-items: center;
@@ -550,6 +560,12 @@ ul.main-nav .dd {
     height: 55px;
     // font-size: 0.875em;
     box-shadow: none;
+
+    font-size: 18px;
+    width: 100%;
+
+    resize: none;
+    overflow: hidden;
   }
 
   textarea:focus {
