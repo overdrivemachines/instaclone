@@ -66,13 +66,41 @@ document.addEventListener("turbo:load", () => {
 
     const newCommentTA = document.getElementById(`post_${postId}_comment_body`);
     const parentHiddenEl = document.getElementById(`post_${postId}_comment_parent_id`);
+    const replyingMessageEl = document.getElementById(`post_${postId}_replying_message`);
 
     parentHiddenEl.value = replyingToCommentId;
     newCommentTA.value = "@" + replyingToUsername + " " + newCommentTA.value;
     newCommentTA.focus();
-    console.log(parentHiddenEl);
+
+    replyingMessageEl.textContent = `Replying to @${replyingToUsername}`;
+    const cancelReplyEl = document.createElement("a");
+    cancelReplyEl.id = `post_${postId}_reply_cancel`;
+    cancelReplyEl.text = "Cancel";
+    cancelReplyEl.href = "javascript:;";
+    cancelReplyEl.setAttribute("onclick", "window.cancelReplyToComment()");
+    cancelReplyEl.setAttribute("data-post-id", postId);
+    cancelReplyEl.className = "ms-2";
+    replyingMessageEl.className = "mb-2";
+    replyingMessageEl.append(cancelReplyEl);
+  }
+
+  function cancelReplyToComment() {
+    // this.event.target is the element that was clicked on
+    let data = this.event.target.dataset;
+
+    // extract data from the cancel link
+    let postId = data.postId;
+
+    // const newCommentTA = document.getElementById(`post_${postId}_comment_body`);
+    const parentHiddenEl = document.getElementById(`post_${postId}_comment_parent_id`);
+    const replyingMessageEl = document.getElementById(`post_${postId}_replying_message`);
+
+    parentHiddenEl.value = "";
+    replyingMessageEl.textContent = "";
+    replyingMessageEl.className = "";
   }
 
   // adding the function to window so that it is accessible everywhere
   window.replyToComment = replyToComment;
+  window.cancelReplyToComment = cancelReplyToComment;
 });
