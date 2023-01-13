@@ -1,6 +1,5 @@
 <%= turbo_frame_tag dom_id(@comment) do %>
-  <%# data-controller="comment" will cause the connect() in comment_controller.js to execute %>
-  <div class="comment" data-controller="comment">
+  <div class="comment">
     <%= render partial: "form", locals: {post: @post, comment: @comment}  %>
   </div>
 <% end %>
