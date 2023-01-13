@@ -48,17 +48,31 @@ document.addEventListener("turbo:load", () => {
   window.returnToTop = returnToTop;
 
   //////////////////////////////////////////////////
-  // Adjust Textarea height (for new comments)
+  // Reply to comment link
   //////////////////////////////////////////////////
-  const textareas = document.getElementsByTagName("textarea");
 
-  let textarea;
+  // This function is called when a comment's "Reply" link is clicked
+  // The new comment form's parent_id is updated
+  // The new comment's textarea is prepended with the username of the
+  // user you are replying to
+  function replyToComment() {
+    // this.event.target is the element that was clicked on
+    let data = this.event.target.dataset;
 
-  // textareas is a
-  Array.from(textareas).forEach(function (textarea) {
-    textarea.addEventListener("input", function (e) {
-      this.style.height = "auto";
-      this.style.height = this.scrollHeight + "px";
-    });
-  });
+    // extract data from the reply link
+    let postId = data.postId;
+    let replyingToCommentId = data.commentId;
+    let replyingToUsername = data.username;
+
+    const newCommentTA = document.getElementById(`post_${postId}_comment_body`);
+    const parentHiddenEl = document.getElementById(`post_${postId}_comment_parent_id`);
+
+    parentHiddenEl.value = replyingToCommentId;
+    newCommentTA.value = "@" + replyingToUsername + " " + newCommentTA.value;
+    newCommentTA.focus();
+    console.log(parentHiddenEl);
+  }
+
+  // adding the function to window so that it is accessible everywhere
+  window.replyToComment = replyToComment;
 });
