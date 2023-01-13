@@ -12,3 +12,8 @@
 <%= turbo_stream.replace "#{dom_id(@new_comment, dom_id(@post))}_form" do %>
   <%= render partial: "comments/form", locals: { post: @post, comment: @new_comment } %>
 <% end %>
+<%# make #post_45_replying_message empty. Remove the message "Replying to @.... Cancel" %>
+<%= turbo_stream.replace "#{dom_id(@post)}_replying_message" do %>
+  <div id="<%= dom_id(@post) %>_replying_message">
+  </div>
+<% end %>
