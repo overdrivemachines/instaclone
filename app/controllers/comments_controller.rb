@@ -25,8 +25,11 @@ class CommentsController < ApplicationController
   # @route PUT /posts/:post_id/comments/:id (post_comment)
   def update
     if @comment.update(comment_params)
-      redirect_to @comment, notice: "Comment was successfully updated."
+      flash.now[:notice] = "Comment was successfully updated."
+      render turbo_stream: turbo_stream.replace(helpers.dom_id(@comment), partial: "comment",
+                                                                          locals: { comment: @comment })
     else
+      # render turbo_stream: turbo_stream.replace(helpers.dom_id(comment), partial: "comment", locals: {comment: @comment})
       render :edit, status: :unprocessable_entity
     end
   end
@@ -34,7 +37,8 @@ class CommentsController < ApplicationController
   # @route DELETE /posts/:post_id/comments/:id (post_comment)
   def destroy
     @comment.destroy
-    redirect_to comments_url, notice: "Comment was successfully destroyed."
+    render turbo_stream: turbo_stream.remove(@comment)
+    # redirect_to comments_url, notice: "Comment was successfully destroyed."
   end
 
   private
@@ -50,6 +54,6 @@ class CommentsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def comment_params
-    params.require(:comment).permit(:body, :post_id, :user_id, :parent_id)
+    params.require(:comment).permit(:body, :parent_id)
   end
 end
