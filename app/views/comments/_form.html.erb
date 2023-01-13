@@ -1,5 +1,6 @@
 <%# New/Edit Comment form partial. Used by posts/_post.html.erb partial %>
-<%= form_with(model: [post, comment], class: "comment-form", id: "#{dom_id(comment, dom_id(post))}_form") do |form| %>
+<%# data-controller="comment" will cause the connect() in comment_controller.js to execute %>
+<%= form_with(model: [post, comment], class: "comment-form", id: "#{dom_id(comment, dom_id(post))}_form", data: {controller: "comment"}) do |form| %>
   <% if comment.errors.any? %>
     <div class="text-danger mb-2">
       Comment <%= comment.errors.full_messages.to_sentence %>
@@ -10,10 +11,15 @@
       <%= notice %>
     </div>
   <% end %>
+  <%# Only for new comment form, add parent_id hidden field  %>
+  <% if !comment.persisted? %>
+    <%= form.hidden_field :parent_id, value: nil, id: "#{dom_id(comment, dom_id(post))}_parent_id" %>
+  <% end %>
   <div class="form-body">
     <%# In comment_controller.js, the following text area is referred to as "this.txtareaTarget" %>
     <%# Also, resizeTextArea() is called each time the user  %>
-    <%= form.text_area :body, class: "form-control", id: "#{dom_id(comment)}_body", data: { "comment-target": "txtarea" , action: "input->comment#resizeTextArea"} %>
+    <%= form.text_area :body, class: "form-control", id: "#{dom_id(comment, dom_id(post))}_body", data: { "comment-target": "txtarea" , action: "input->comment#resizeTextArea", "post-id": post.id} %>
+    <%# form.text_area :body, class: "form-control" %>
     <%= form.submit "Post", class: "btn btn-primary" %>
   </div>
 <% end %>
