@@ -97,3 +97,14 @@ Post.find_each do |post|
     post.comments.create(body: Faker::Quote.matz, user_id: random_user_id, parent_id: post.comments.pluck(:id).sample)
   end
 end
+
+# Create likes
+User.find_each do |u|
+  Post.find_each do |p|
+    Like.create(user: u, likeable: p) if Random.rand > 0.5
+  end
+
+  Comment.find_each do |c|
+    Like.create(user: u, likeable: c) if Random.rand > 0.5
+  end
+end

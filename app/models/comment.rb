@@ -27,8 +27,9 @@ class Comment < ApplicationRecord
   belongs_to :user
   belongs_to :parent, class_name: "Comment", optional: true
   has_many :replies, class_name: "Comment", foreign_key: :parent_id, dependent: :destroy
-  before_validation :set_correct_parent
+  has_many :likes, as: :likeable
 
+  before_validation :set_correct_parent
   validates :body, presence: true, length: { maximum: 2200 }
 
   def set_correct_parent
