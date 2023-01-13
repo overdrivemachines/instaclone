@@ -6,7 +6,8 @@
       <%= link_to comment.user.username, user_path(comment.user) %> <%= comment.body %>
       <%# TODO: Add hours ago, number of likes and reply button %>
       <div class="comment-details">
-        <%= time_ago_in_words(comment.created_at) %> ago • Reply
+        <%= time_ago_in_words(comment.created_at) %> ago •
+        <%= link_to "Reply", "javascript:;", class: "reply-to-comment-link", data: {comment_id: comment.id, username: comment.user.username, post_id: comment.post.id}, onclick: "window.replyToComment()" %>
         <% if comment.user_id == current_user.id %>
           <div class="btn-group">
             <a href="#" class="p-2" data-bs-toggle="dropdown" aria-expanded="false">
@@ -29,8 +30,14 @@
   </div>
 <% end %>
 <% if comment.replies.exists? %>
-  <div class="ps-4">
+  <div class="ps-4" id="<%= dom_id(comment, "replies_for") %>">
     <%# recursive call to _comment.html.erb partial %>
     <%= render comment.replies %>
   </div>
+<% else %>
+  <%# This comment has no replies %>
+  <% if comment.parent_id.blank? %>
+    <div class="ps-4" id="<%= dom_id(comment, "replies_for") %>">
+    </div>
+  <% end %>
 <% end %>
