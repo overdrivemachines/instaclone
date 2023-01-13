@@ -11,9 +11,8 @@
       <%= render partial: "posts/post_author_container", locals: {post: post} %>
     <% end %>
     <div class="post-actions">
-      <div class="left">
-        <button class="btn-fa"><i class="fa-regular fa-heart"></i></button>
-        <button class="btn-fa"><i class="fa-solid fa-heart liked"></i></button>
+      <div class="left d-flex">
+        <%= render partial: "likes/button", locals: {likeable: post} %>
         <button class="btn-fa"><i class="fa-regular fa-comment"></i></button>
       </div>
       <div class="right">
@@ -22,8 +21,10 @@
 
     </div>
     <div class="post-stats">
-      <div class="likes-count">0 likes</div>
-      <div class="comments-count"><%= pluralize(post.comments.size, 'Comment') %></div>
+      <div class="likes-count"><%= post.likes.size %> likes</div>
+      <div class="comments-count">
+        <%= link_to pluralize(post.comments.size, 'Comment'), post %>
+      </div>
     </div>
     <div class="comments-container" id="<%= dom_id(post, "comments_container") %>">
       <%# The first comment is the post's caption %>
@@ -53,6 +54,7 @@
 
     </div>
     <div class="new-comment-container">
+      <div id="<%= dom_id(post) %>_replying_message"></div>
       <%= render partial: "comments/form", locals: { post: post, comment: post.comments.new } %>
     </div>
   </div>
