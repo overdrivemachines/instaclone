@@ -22,7 +22,12 @@
     <footer>
       <button onclick="returnToTop()" id="return-to-top" class="btn btn-primary" title="Go to top"> <i class="fa-solid fa-arrow-up"></i>
       </button>
-      Copyright <%= Date.today.year %> Instaclone. Designed by <%= link_to "DC", "https://github.com/overdrivemachines" %>
+      <div>
+        <%= debug(params) if Rails.env.development? %>
+      </div>
+      <div>
+        Copyright <%= Date.today.year %> Instaclone. Designed by <%= link_to "DC", "https://github.com/overdrivemachines" %>
+      </div>
     </footer>
   </body>
 </html>
