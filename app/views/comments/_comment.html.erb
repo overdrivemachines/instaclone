@@ -3,14 +3,16 @@
 <%= turbo_frame_tag dom_id(comment) do %>
   <div class="comment">
     <div class="comment-content">
-      <%= link_to comment.user.username, user_path(comment.user) %> <%= comment.body %>
+      <div>
+        <%= link_to comment.user.username, user_path(comment.user) %> <%= comment.body %>
+      </div>
       <%# TODO: Add hours ago, number of likes and reply button %>
       <div class="comment-details">
         <%= time_ago_in_words(comment.created_at) %> ago •
         <%= link_to "Reply", "javascript:;", class: "reply-to-comment-link", data: {comment_id: comment.id, username: comment.user.username, post_id: comment.post.id}, onclick: "window.replyToComment()" %>
         <% if comment.user_id == current_user.id %>
           <div class="btn-group">
-            <a href="#" class="p-2" data-bs-toggle="dropdown" aria-expanded="false">
+            <a href="#" class="ps-2" data-bs-toggle="dropdown" aria-expanded="false">
               <i class="fa-solid fa-ellipsis " ></i>
             </a>
             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark ">
@@ -26,7 +28,10 @@
         <% end %>
       </div>
     </div>
-    <div class="comment-like"><button class="btn-fa"><i class="fa-regular fa-heart"></i></button></div>
+    <div class="comment-like">
+      <%# <button class="btn-fa"><i class="fa-regular fa-heart"></i></button> %>
+      <%= render partial: "likes/button", locals: {likeable: comment} %>
+    </div>
   </div>
 <% end %>
 <% if comment.replies.exists? %>
