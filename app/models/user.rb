@@ -42,8 +42,9 @@ class User < ApplicationRecord
          :confirmable, :lockable, :timeoutable, :trackable, :omniauthable
 
   has_many :posts, dependent: :destroy
-  has_one_attached :avatar
-  has_one_attached :avatar_background
+  has_many :likes, dependent: :destroy
+  has_one_attached :avatar, dependent: :destroy
+  has_one_attached :avatar_background, dependent: :destroy
 
   before_save :strip_and_downcase_fields
 
