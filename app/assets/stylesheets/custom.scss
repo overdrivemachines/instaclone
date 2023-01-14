@@ -52,11 +52,12 @@ a {
   text-decoration: none;
   color: var(--color-text2);
   font-weight: 600;
+  transition: color 0.2s ease-in-out;
 }
 a:hover {
   text-decoration: none;
   color: inherit;
-  // color: var(--color-text1);
+  color: var(--color-text1);
 }
 a.blue-link {
   color: var(--color-blue);
@@ -451,6 +452,10 @@ ul.main-nav .dd {
   .right .btn-fa {
     margin-right: 0;
   }
+
+  turbo-frame {
+    width: auto;
+  }
 }
 
 .btn-fa {
@@ -476,6 +481,12 @@ ul.main-nav .dd {
   padding: 0.75em 1.5em;
   color: var(--color-text1);
   font-weight: 600;
+  a {
+    color: var(--color-text1);
+  }
+  a:hover {
+    color: var(--color-text2);
+  }
 }
 .comments-container {
   padding: 0.25em 1.5em;

@@ -46,6 +46,16 @@ class User < ApplicationRecord
   has_one_attached :avatar, dependent: :destroy
   has_one_attached :avatar_background, dependent: :destroy
 
+  has_many :active_relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
+  has_many :passive_relationships, class_name: "Relationship", foreign_key: "followee_id", dependent: :destroy
+
+  # If u1 follows u2 then u1.active_relationships returns all relationships where u1 is follower:
+  # [id: 32, follower: u1, followee: u2] and
+  # u2.passive_relationships will return all relationships where u2 is followee.
+
+  has_many :following, through: :active_relationships,  source: :followee
+  has_many :followers, through: :passive_relationships, source: :follower
+
   before_save :strip_and_downcase_fields
 
   # Validations
