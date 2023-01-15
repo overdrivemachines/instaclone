@@ -1,0 +1,8 @@
+<%= turbo_frame_tag "#{dom_id(followee, "follow")}" do %>
+  <% relationship = Relationship.find_by(follower: current_user, followee: followee) %>
+  <% if relationship.nil? %>
+    <%= button_to "Follow", relationships_path, class: "dropdown-item btn-follow", params: { relationship: {followee_id: followee.id} } %>
+  <% else %>
+    <%= button_to "Unfollow", relationship, class: "dropdown-item btn-unfollow", method: :delete %>
+  <% end %>
+<% end %>
