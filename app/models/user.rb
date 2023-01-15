@@ -53,7 +53,7 @@ class User < ApplicationRecord
   # [id: 32, follower: u1, followee: u2] and
   # u2.passive_relationships will return all relationships where u2 is followee.
 
-  has_many :following, through: :active_relationships,  source: :followee
+  has_many :followees, through: :active_relationships,  source: :followee
   has_many :followers, through: :passive_relationships, source: :follower
 
   before_save :strip_and_downcase_fields
@@ -101,5 +101,19 @@ class User < ApplicationRecord
   # Overriding to_param so the username (instead of id) is used for route path and URL helpers:
   def to_param
     username
+  end
+
+  # make self follow the user
+  # follower: self
+  # followee: user
+  def follow(user)
+    Relationship.create(follower: self, followee: user)
+  end
+
+  # make self unfollow the user
+  # follower: self
+  # followee: user
+  def unfollow(user)
+    active_relationships.find_by(followee_id: user.id).destroy
   end
 end
