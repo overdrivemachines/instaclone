@@ -21,15 +21,20 @@
       </a>
       <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark ">
         <%# TODO: change unfollow to follow %>
-        <% if post.user_id == current_user.id %>
-          <li>
-            <%= link_to "Edit", edit_post_path(post), class: "dropdown-item" %>
-          </li>
-          <li>
-            <%= link_to "Delete", post, data: { turbo_method: :delete, turbo_frame: "_top" }, class: "dropdown-item text-danger" %>
-          </li>
-        <% else %>
-          <li><a class="dropdown-item" href="#">Follow</a></li>
+        <% if user_signed_in? %>
+          <% if post.user_id == current_user.id %>
+            <li>
+              <%= link_to "Edit", edit_post_path(post), class: "dropdown-item" %>
+            </li>
+            <li>
+              <%= link_to "Delete", post, data: { turbo_method: :delete, turbo_frame: "_top" }, class: "dropdown-item text-danger" %>
+            </li>
+          <% else %>
+            <%# Follow/Unfollow %>
+            <li>
+              <%= render partial: "relationships/button", locals: {current_user: current_user, followee: post.user} %>
+            </li>
+          <% end %>
         <% end %>
         <li><hr class="dropdown-divider"></li>
         <li><a class="dropdown-item" href="#">Copy Link</a></li>
