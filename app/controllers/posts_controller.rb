@@ -1,9 +1,11 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!
-  before_action :set_post, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, except: [:show]
+  before_action :set_post, only: %i[ edit update destroy ]
 
   # @route GET /posts/:id (post)
-  def show; end
+  def show
+    @post = Post.includes(:comments).includes(:user).find(params[:id])
+  end
 
   # @route GET /posts/new (new_post)
   def new
