@@ -1,0 +1,28 @@
+<%# @follow is "followers" or "followees" %>
+
+<%= turbo_frame_tag "#{@follow}-modal-button" do %>
+  <%= link_to "javascript:;", data: { "bs-toggle": "modal", "bs-target": "##{@follow}-modal" } do %>
+    <b><%= @user.send(@follow).size %></b> <%= @follow %>
+  <% end %>
+
+  <!-- Modal -->
+  <%# connecting to modal_controller.js %>
+  <%# connect() is executed as soon as this element appears in the DOM %>
+  <%# connect() opens/shows this modal %>
+  <div class="modal fade" id="<%= @follow %>-modal" tabindex="-1" aria-labelledby="<%= @follow %>-modal-label" aria-hidden="true", data-controller="modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="<%= @follow %>-modal-label"><%= @follow.capitalize %></h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          modal body
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
