@@ -15,24 +15,34 @@
               <%= link_to @user do %>
                 <h2 class="text-start"><%= @user.full_name %> <span>@<%= @user.username %></span></h2>
               <% end %>
-              <% if current_user != @user %>
+              <% if current_user == @user %>
                 <div>
-                  <div class="btn-group">
-                    <%# TODO %>
-                    <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                      Following
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                      <li><a class="dropdown-item" href="#">Unfollow</a></li>
-                    </ul>
-                  </div>
+                  <%= link_to users_edit_details_path(@user), class: "btn btn-primary" do %>
+                    <i class="fa-solid fa-gear me-1"></i> Edit Details
+                  <% end %>
+                </div>
+              <% else %>
+                <div>
+                  <%= render partial: "relationships/button", locals: {followee: @user} %>
                 </div>
               <% end %>
             </div>
             <ul class="stats-container">
               <li><b><%= @user.posts.size %></b> posts</li>
-              <li><b>2.1M</b> followers</li>
-              <li><b>23</b> following</li>
+              <li>
+                <%= turbo_frame_tag "followers-modal-button" do %>
+                  <%= link_to user_followers_path(@user.username) do %>
+                    <b><%= @user.followers.size %></b> followers
+                  <% end %>
+                <% end %>
+              </li>
+              <li>
+                <%= turbo_frame_tag "followees-modal-button" do %>
+                  <%= link_to user_followees_path(@user.username) do %>
+                    <b><%= @user.followees.size %></b> following
+                  <% end %>
+                <% end %>
+              </li>
             </ul>
             <div class="bio-container">
               <% if @user.bio.blank? %>
@@ -47,10 +57,6 @@
       </div>
     </div>
   </div>
-
-  <!-- Modal -->
-  <%# Will populate from app/views/posts/show.html.erb %>
-  <%# turbo_frame_tag "post-show-modal-container" %>
 
   <div class="posts-container">
     <div class="w-940">
