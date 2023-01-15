@@ -1,7 +1,10 @@
 <%= turbo_frame_tag dom_id(likeable, "like") do %>
   <%# likeable is either a post or comment object %>
   <%# check to see if user likes the post/comment %>
-  <% like = current_user.likes.find_by(likeable: likeable) %>
+  <% like = nil %>
+  <% if user_signed_in? %>
+    <% like = current_user.likes.find_by(likeable: likeable) %>
+  <% end %>
   <% if like.nil? %>
     <%= button_to likes_path, class: "btn-fa", params: {like: {likeable_id: likeable.id, likeable_type: likeable.class.to_s}} do %>
       <i class="fa-regular fa-heart"></i>
