@@ -1,4 +1,5 @@
 class LikesController < ApplicationController
+  before_action :authenticate_user!
   # @route POST /likes (likes)
   def create
     @like = current_user.likes.new(like_params)
