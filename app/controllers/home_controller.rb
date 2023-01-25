@@ -3,7 +3,10 @@ class HomeController < ApplicationController
   def index
     # displaying just 10 posts
     # TODO: load on scroll or paginate
-    @posts = Post.includes(:user).limit(10)
+    @posts = user_signed_in? ? current_user.feed.limit(10) : Post.includes(:user).limit(10)
+
+    # TODO: @users_to_follow = current_user.follow_suggessions
+    @users_to_follow = current_user.follow_suggestions
   end
 
   # @route GET /home/message (home_message)
