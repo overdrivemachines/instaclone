@@ -116,4 +116,22 @@ class User < ApplicationRecord
   def unfollow(user)
     active_relationships.find_by(followee_id: user.id).destroy
   end
+
+  def feed
+    # follower is following the followee
+    # followee_id is the one being followed
+    # follower_id is the one following
+    following_ids = "SELECT followee_id FROM relationships WHERE follower_id = :user_id"
+    Post.where("user_id IN (#{following_ids}) OR user_id = :user_id", user_id: id)
+        .includes(:user, image_attachment: :blob)
+  end
+
+  # "Who to follow?" suggestions
+  def follow_suggestions
+    # TODO
+    # list of users that follow you but you dont follow
+    # ids = "SELECT follower_id FROM relationships WHERE "
+    # User.where("id IN (1,4,5)")
+    User.where("id NOT IN (#{id})")
+  end
 end
