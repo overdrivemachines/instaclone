@@ -2,7 +2,7 @@
 
 <%= turbo_frame_tag "#{@follow}-modal-button" do %>
   <%= link_to "javascript:;", data: { "bs-toggle": "modal", "bs-target": "##{@follow}-modal" } do %>
-    <b><%= @user.send(@follow).size %></b> <%= @follow %>
+    <b><%= @follow_users.size %></b> <%= caption_for(@follow) %>
   <% end %>
 
   <!-- Modal -->
@@ -13,11 +13,18 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="<%= @follow %>-modal-label"><%= @follow.capitalize %></h1>
+          <h1 class="modal-title fs-5" id="<%= @follow %>-modal-label">
+            <%# caption_for defined in user_helper.rb %>
+            <%= caption_for(@follow).capitalize %>
+          </h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          modal body
+          <%= render @follow_users %>
+          <% if @follow_users.size == 0 %>
+            <%= message_zero_follows(@follow) %>
+          <% end %>
+
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
