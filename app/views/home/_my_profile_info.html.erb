@@ -18,18 +18,18 @@
       <p class="my-profile-info"><%= current_user.bio %></p>
       <div class="my-profile-follow-container">
         <div class="my-profile-following-count">
-          <a href="#">
-            6,791
-            <b>Following</b>
-          </a>
-
+          <%= turbo_frame_tag "followees-modal-button" do %>
+            <%= link_to user_followees_path(current_user.username) do %>
+              <b><%= current_user.followees.size %></b> following
+            <% end %>
+          <% end %>
         </div>
         <div class="my-profile-followers-count">
-          <a href="#">
-            3,286
-            <b>Followers</b>
-          </a>
-
+          <%= turbo_frame_tag "followers-modal-button" do %>
+            <%= link_to user_followers_path(current_user.username) do %>
+              <b><%= current_user.followers.size %></b> followers
+            <% end %>
+          <% end %>
         </div>
       </div>
 

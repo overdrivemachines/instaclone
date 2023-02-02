@@ -6,10 +6,12 @@
     <% like = current_user.likes.find_by(likeable: likeable) %>
   <% end %>
   <% if like.nil? %>
+    <%# Link to create new like %>
     <%= button_to likes_path, class: "btn-fa", params: {like: {likeable_id: likeable.id, likeable_type: likeable.class.to_s}} do %>
       <i class="fa-regular fa-heart"></i>
     <% end %>
   <% else %>
+    <%# Link to remove like %>
     <%= button_to like, class: "btn-fa", method: :delete do %>
       <i class="fa-solid fa-heart liked"></i>
     <% end %>

@@ -9,8 +9,7 @@
     <% end %>
     <div class="post-middle">
       <div class="stats">
-        <%# TODO Update the number of likes and comments %>
-        <span><i class="fa-solid fa-heart"></i> 2,329 </span>
+        <span><i class="fa-solid fa-heart"></i> <%= post.likes.size %> </span>
         <span><i class="fa-solid fa-comment"></i> <%= post.comments.size %> </span>
       </div>
     </div>

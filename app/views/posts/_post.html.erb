@@ -12,7 +12,9 @@
     <% end %>
     <div class="post-actions">
       <div class="left d-flex">
-        <%= render partial: "likes/button", locals: {likeable: post} %>
+        <div class="like-btn-container">
+          <%= render partial: "likes/button", locals: {likeable: post} %>
+        </div>
         <button class="btn-fa"><i class="fa-regular fa-comment"></i></button>
       </div>
       <div class="right">
@@ -21,7 +23,9 @@
 
     </div>
     <div class="post-stats">
-      <div class="likes-count"><%= post.likes.size %> likes</div>
+      <div class="likes-count">
+        <%= pluralize(post.likes.size, 'like') %>
+      </div>
       <div class="comments-count">
         <%= link_to pluralize(post.comments.size, 'Comment'), post %>
       </div>

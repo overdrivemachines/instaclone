@@ -42,6 +42,8 @@
 #                          like DELETE /likes/:id(.:format)                                    likes#destroy
 #                 relationships POST   /relationships(.:format)                                relationships#create
 #                  relationship DELETE /relationships/:id(.:format)                            relationships#destroy
+#                user_followers GET    /:username/followers(.:format)                          users#follow {:username=>/\w+/}
+#                user_followees GET    /:username/followees(.:format)                          users#follow {:username=>/\w+/}
 #                          user GET    /:username(.:format)                                    users#show {:username=>/\w+/}
 # rails_postmark_inbound_emails POST   /rails/action_mailbox/postmark/inbound_emails(.:format) action_mailbox/ingresses/postmark/inbound_emails#create
 
@@ -71,6 +73,12 @@ Rails.application.routes.draw do
 
   resources :likes, only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]
+
+  get ":username/followers", to: "users#follow", as: "user_followers",
+                             constraints: { username: User::USERNAME_REGEX }
+
+  get ":username/followees", to: "users#follow", as: "user_followees",
+                             constraints: { username: User::USERNAME_REGEX }
 
   # resources :users, only: [:show]
   get ":username", to: "users#show", as: "user", constraints: { username: User::USERNAME_REGEX }

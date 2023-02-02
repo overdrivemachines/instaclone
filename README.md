@@ -153,3 +153,6 @@ bundle lock --add-platform x86_64-linux
 - Turbo in Rails 7 - https://blog.corsego.com/turbo-hotwire-CRUD
 - JS Naming convetions - https://www.syncfusion.com/blogs/post/10-javascript-naming-conventions-every-developer-should-know.aspx
 - Polymorphic likes - https://medium.com/@jamesreed3050/setting-up-polymorphic-likes-in-rails-7d8be2e01c12
+- Followers
+  - https://www.devwalks.com/lets-build-instagram-with-ruby-on-rails-part-6-follow-all-the-people/
+  - Includes - https://medium.com/@pdiba/creating-a-follower-system-in-rails-38b7d59d63ac

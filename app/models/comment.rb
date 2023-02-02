@@ -23,7 +23,7 @@
 class Comment < ApplicationRecord
   # Requires comments_count column in posts table.
   # post.comments.size will be quick
-  belongs_to :post, counter_cache: true
+  belongs_to :post, counter_cache: true # posts table has comments_count column
   belongs_to :user
   belongs_to :parent, class_name: "Comment", optional: true
   has_many :replies, class_name: "Comment", foreign_key: :parent_id, dependent: :destroy
