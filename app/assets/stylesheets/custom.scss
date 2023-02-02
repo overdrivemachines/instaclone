@@ -449,6 +449,9 @@ ul.main-nav .dd {
   .left {
     flex: 1;
   }
+  .like-btn-container {
+    width: 50px;
+  }
   .right .btn-fa {
     margin-right: 0;
   }
@@ -525,9 +528,12 @@ ul.main-nav .dd {
       flex: 1;
       padding-right: 0.875em;
     }
+    .comment-like {
+      width: 14px;
+    }
     .comment-like .btn-fa {
       margin-right: 0;
-      font-size: 0.875em;
+      font-size: 0.875rem;
     }
   }
 
@@ -644,6 +650,10 @@ h5.my-profile-username {
   font-weight: 700;
   b {
     display: block;
+    color: var(--color-text2);
+  }
+  a {
+    display: block;
     font-weight: 600;
     font-size: 0.875em;
     color: var(--color-text1);
@@ -683,6 +693,28 @@ h5.sub {
 
 .trending-tag-count {
   color: var(--color-text1);
+}
+
+// Modal for following and followers
+.modal-body {
+  font-size: 16px;
+  padding-left: 0;
+  padding-right: 0;
+
+  .post-author-container {
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 0.5em;
+    margin-bottom: 0.5em;
+    // border-bottom: 1px solid green;
+  }
+  .post-author-container:last-child {
+    padding-bottom: 0em;
+    margin-bottom: 0em;
+  }
+  .post-author-info {
+    flex: 1;
+  }
 }
 
 //////////////////////////////////////////////////////////
