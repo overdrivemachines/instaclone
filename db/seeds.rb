@@ -116,3 +116,15 @@ User.find_each do |u|
     Like.create(user: u, likeable: c) if Random.rand > 0.6
   end
 end
+
+# Create Followers
+puts "Creating followers for each user"
+User.find_each do |u|
+  4.times do
+    followee_user = User.find(random_user_id)
+    if !u.follows?(followee_user)
+      Relationship.create(follower: u, followee: followee_user)
+      puts u.full_name + " follows " + followee_user.full_name
+    end
+  end
+end
