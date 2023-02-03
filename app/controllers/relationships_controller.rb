@@ -4,7 +4,9 @@ class RelationshipsController < ApplicationController
   def create
     @relationship = Relationship.new(relationship_params)
     @relationship.follower = current_user
-    @relationship.save
+
+    # save the relationship. do not save if user is trying to follow themself
+    @relationship.save if @relationship.follower != @relationship.followee
     render partial: "button", locals: { followee: @relationship.followee }
   end
 
