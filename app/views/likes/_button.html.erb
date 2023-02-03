@@ -12,7 +12,7 @@
     <% end %>
   <% else %>
     <%# Link to remove like %>
-    <%= button_to like, class: "btn-fa", method: :delete do %>
+    <%= button_to like, class: "btn-fa", method: :delete, data: { "bs-toggle": "popover", "bs-trigger": "hover focus", "bs-placement": "bottom", "bs-content": "Liked " + time_ago_in_words(like.created_at) + " ago" } do %>
       <i class="fa-solid fa-heart liked"></i>
     <% end %>
   <% end %>
