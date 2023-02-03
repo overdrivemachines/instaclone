@@ -110,6 +110,13 @@ class User < ApplicationRecord
     Relationship.create(follower: self, followee: user)
   end
 
+  # Does self follow user?
+  # Use exists? instead of present?
+  # https://semaphoreci.com/blog/2017/03/14/faster-rails-how-to-check-if-a-record-exists.html
+  def follows?(user)
+    Relationship.where(follower: self, followee: user).exists?
+  end
+
   # make self unfollow the user
   # follower: self
   # followee: user
