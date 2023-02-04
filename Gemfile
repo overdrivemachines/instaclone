@@ -28,18 +28,19 @@ group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
 end
 
+gem "faker"
+# Download files for seed data
+gem "down"
+# Get images from pexels.com
+gem "pexels"
+
 group :development do
   gem "web-console"
   gem "annotate"
-  gem "faker"
   # Preview email in the default browser instead of sending it.
   gem "letter_opener"
   # Format ERB Files
   gem "erb-formatter"
   # Annotate controllers
   gem "chusaku", require: false
-  # Download files for seed data
-  gem "down"
-  # Get images from pexels.com
-  gem "pexels"
 end
