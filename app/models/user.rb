@@ -42,6 +42,7 @@ class User < ApplicationRecord
          :confirmable, :lockable, :timeoutable, :trackable, :omniauthable
 
   has_many :posts, dependent: :destroy
+  has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_one_attached :avatar, dependent: :destroy
   has_one_attached :avatar_background, dependent: :destroy
@@ -133,12 +134,30 @@ class User < ApplicationRecord
         .includes(:user, image_attachment: :blob)
   end
 
+  # When no user is signed in use this feed
+  def self.feed
+    Post.all.includes(:user, image_attachment: :blob)
+  end
+
   # "Who to follow?" suggestions
   def follow_suggestions
     # TODO
     # list of users that follow you but you dont follow
     # ids = "SELECT follower_id FROM relationships WHERE "
     # User.where("id IN (1,4,5)")
-    User.where("id NOT IN (#{id})")
+    # User.where("id NOT IN (#{id})")
+
+    # u.followers.where(!u.followee_ids)
+    User.all.limit(5)
+  end
+
+  # "Who to follow?" suggestions when user is not signed in
+  def self.follow_suggestions
+    User.all.limit(5)
+  end
+
+  # returns a random user
+  def self.random_user
+    User.offset(rand(User.count)).first
   end
 end
