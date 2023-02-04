@@ -23,7 +23,10 @@ class Post < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :likes, as: :likeable, dependent: :destroy
 
-  has_one_attached :image
+  has_one_attached :image, dependent: :destroy
+
+  # descending order from newest to oldest.
+  default_scope -> { order(created_at: :desc) }
 
   # resize image so that the width or the height are at least 293 pixels
   # does not resize images smaller than 293 pixels
