@@ -59,10 +59,10 @@ if (avatar_files_path.size <= 4) || (avatar_background_files_path.size <= 4) || 
   download_images
 end
 
-download_images
+# download_images
 
 # Create Users
-# create_users
+create_users
 
 # Get the list of files
 avatar_files_path = Dir[Rails.root.join('db/seeds/avatars/*.jpeg')]
@@ -106,7 +106,7 @@ Post.find_each do |post|
 end
 
 # Create likes
-puts "Adding likes to each posts and comments"
+puts "Adding likes to each post and comment"
 User.find_each do |u|
   Post.find_each do |p|
     Like.create(user: u, likeable: p) if Random.rand > 0.6
@@ -120,11 +120,11 @@ end
 # Create Followers
 puts "Creating followers for each user"
 User.find_each do |u|
-  4.times do
+  14.times do
     followee_user = User.find(random_user_id)
-    if !u.follows?(followee_user)
+    unless u.follows?(followee_user)
       Relationship.create(follower: u, followee: followee_user)
-      puts u.full_name + " follows " + followee_user.full_name
+      # puts u.full_name + " follows " + followee_user.full_name
     end
   end
 end
