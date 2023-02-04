@@ -82,5 +82,5 @@ test:
 production:
   <<: *default
   database: instaclone_production
-  username: instaclone
-  password: <%= Rails.application.credentials.database_production[:password] %>
+  username: deploy
+  password: <%= Rails.application.credentials.dig(Rails.env.to_sym, :pg_password) %>
