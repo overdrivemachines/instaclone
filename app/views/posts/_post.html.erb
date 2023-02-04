@@ -1,10 +1,22 @@
 <%# Partial used by home/index.html.erb and posts/show.html.erb %>
+<% if controller_name == "posts" && action_name == "show" %>
+  <div class="back-container">
+    <%= link_to 'javascript:history.back()' do %>
+      <i class="fa-solid fa-arrow-left"></i> Go Back
+    <% end %>
+  </div>
+<% end %>
+
 <div class="post-container" id="<%= dom_id post %>">
   <div class="post-image-container">
     <% if controller_name == "home" && action_name == "index" %>
       <%= render partial: "posts/post_author_container", locals: {post: post} %>
+      <%= link_to post do %>
+        <%= image_tag post.image, class: "post-image" %>
+      <% end %>
+    <% else %>
+      <%= image_tag post.image, class: "post-image" %>
     <% end %>
-    <%= image_tag post.image, class: "post-image" %>
   </div>
   <div class="post-items-container">
     <% if controller_name != "home" %>

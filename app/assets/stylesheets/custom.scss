@@ -393,7 +393,7 @@ ul.main-nav .dd {
 }
 .post-image {
   max-width: 615px;
-  height: 615px;
+  height: 638px;
   margin: auto;
   object-fit: cover;
 }
@@ -935,6 +935,12 @@ section.users-show {
 // POSTS SHOW SECTION
 //////////////////////////////////////////////////////////
 section.posts-show {
+  .back-container {
+    width: 1025px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 1rem;
+  }
   .post-container {
     display: flex;
     width: 1025px;
