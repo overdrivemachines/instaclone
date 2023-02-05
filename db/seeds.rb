@@ -128,3 +128,15 @@ User.find_each do |u|
     end
   end
 end
+
+# Randomize every post's created date
+Post.find_each do |p|
+  p.created_at = p.created_at - rand(10..90).days
+  p.save
+end
+
+# Randomize every comment's created date
+Comment.find_each do |c|
+  c.created_at = c.created_at - rand(1..10).days
+  c.save
+end
