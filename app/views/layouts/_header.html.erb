@@ -1,65 +1,28 @@
-<div class="logo-container">
-  <%= link_to root_path do %>
-    <%= image_tag "instaclone-white-logo.png", class: "logo" %>
-    <%= image_tag "instaclone-white-text.png", class: "logo-text" %>
-  <% end %>
-</div>
-<div class="search-container">
-  <input type="text" class="form-control main-search" placeholder="Search">
-</div>
-<div class="nav-container">
-  <ul class="main-nav">
-    <li class="nav-item active">
-      <%= link_to root_path, class: "nav-item-link" do %>
-        <div class="fa-container"><i class="fa-solid fa-house"></i></div>
-        <div class="nav-item-name">Home</div>
-      <% end %>
-    </li>
-    <% if user_signed_in? %>
-      <li class="nav-item">
-        <%= link_to new_post_path, class: "nav-item-link" do %>
-          <div class="fa-container"><i class="fa-solid fa-plus"></i></div>
-          <div class="nav-item-name">New Post</div>
-        <% end %>
-      </li>
-    <% end %>
-    <li class="nav-item">
-      <a href="#" class="nav-item-link">
-        <div class="fa-container"><i class="fa-solid fa-envelope"></i></div>
-        <div class="nav-item-name">Mail</div>
-      </a>
-    </li>
-    <li class="nav-item">
-      <a href="#" class="nav-item-link">
-        <div class="fa-container"><i class="fa-solid fa-bell"></i></div>
-        <div class="nav-item-name">Bell</div>
-      </a>
-    </li>
-    <li class="divider"></li>
-    <% if user_signed_in? %>
-      <li class="dd">
-        <div class="dropdown">
-          <button type="button" class="btn btn-primary dropdown-toggle dd-btn" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
-            <% if current_user.avatar.attached? %>
-              <%= image_tag current_user.avatar_as_thumbnail, class: "dd-btn-avatar" %>
-            <% else %>
-              <%= image_tag "person-placeholder.jpg", class: "dd-btn-avatar" %>
-            <% end %>
-            <span>@<%= current_user.username %></span>
-          </button>
-          <ul class="dropdown-menu dropdown-menu-end">
-            <li><%= link_to "View Profile", current_user, class: "dropdown-item" %></li>
-            <li><%= link_to "Edit Profile", users_edit_details_path, class: "dropdown-item" %></li>
-            <li><%= link_to "Sign Out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %></li>
-          </ul>
-        </div>
-      </li>
-    <% else %>
-      <li class="nav-item active dark">
-        <%= link_to new_user_session_path, class: "nav-item-link" do %>
-          <div class="nav-item-name">Log In</div>
-        <% end %>
-      </li>
-    <% end %>
-  </ul>
-</div>
+<nav class="navbar navbar-expand-lg bg-body-tertiary navbar-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <img src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+      Bootstrap
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled">Disabled</a>
+        </li>
+      </ul>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
