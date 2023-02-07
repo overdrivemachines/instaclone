@@ -13,7 +13,7 @@
   <div class="post-image-container">
     <% if controller_name == "home" && action_name == "index" %>
       <%= render partial: "posts/post_author_container", locals: {post: post} %>
-      <%= link_to post do %>
+      <%= link_to post, class: "d-block" do %>
         <%= image_tag post.image, class: "post-image" %>
       <% end %>
     <% else %>

@@ -419,11 +419,11 @@ h3 {
   .middle-content {
     // display: flex;
     max-width: 100%;
-    margin-left: 1em;
-    margin-right: 1em;
 
     @media (min-width: 992px) {
       max-width: 680px;
+      margin-left: 1em;
+      margin-right: 1em;
     }
   }
   aside.left-content {
@@ -455,9 +455,13 @@ h3 {
 .post-container {
   background: var(--color-post-bg);
   width: 100%;
-  border-radius: 1em;
-  padding: 1em 0;
+  padding: 0.5em 0;
   margin-bottom: 1em;
+
+  @media (min-width: 992px) {
+    border-radius: 1em;
+    padding: 1em 0;
+  }
 }
 .post-image-container {
   text-align: center;
@@ -470,16 +474,22 @@ h3 {
 }
 
 .post-author-container {
-  padding-left: 1em;
-  padding-right: 1em;
-  padding-bottom: 0.5em;
+  padding: 0 0.5em 0 0.5em;
   width: 100%;
   display: flex;
   align-items: center;
+
+  @media (min-width: 992px) {
+    padding: 0 1em 0.5em 1em;
+  }
 }
 
 .post-author-ic {
-  padding: 0 0.5em;
+  padding: 0;
+  @media (min-width: 992px) {
+    padding: 0 0.5em;
+  }
+
   img {
     width: 56px;
     height: 56px;
@@ -622,15 +632,23 @@ h3 {
 .new-comment-container {
   font-size: 0.875em;
   // margin-top: 1em;
-  padding: 16px 1.5em 0 1.5em;
+  padding: 16px 1.5em 0.6em 1.5em;
   border-top: 1px solid var(--color-border2);
+
+  @media (min-width: 992px) {
+    padding: 16px 1.5em 0 1.5em;
+  }
 }
 
 .comment-form {
   width: 100%;
   .form-body {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    @media (min-width: 992px) {
+      align-items: center;
+      flex-direction: row;
+    }
   }
 
   .field_with_errors {
@@ -654,6 +672,11 @@ h3 {
 
     resize: none;
     overflow: hidden;
+    margin-bottom: 1rem;
+
+    @media (min-width: 992px) {
+      margin-bottom: 0;
+    }
   }
 
   textarea:focus {
