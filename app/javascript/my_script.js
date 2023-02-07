@@ -103,4 +103,19 @@ document.addEventListener("turbo:load", () => {
   // adding the function to window so that it is accessible everywhere
   window.replyToComment = replyToComment;
   window.cancelReplyToComment = cancelReplyToComment;
+
+  //////////////////////////////////////////////////
+  // Comment button
+  //////////////////////////////////////////////////
+  // When the comment button is clicked, Focus on the new comment text area
+  let commentBtns = $(".btn-comment");
+  commentBtns.forEach((commentBtn) => {
+    commentBtn.addEventListener("click", (element) => {
+      // element.target will return a child element if the child of commentBtn was clicked
+      // element.currentTarget will always return the commentBtn element
+      let postItemsContainer = element.currentTarget.closest(".post-items-container");
+      let txtArea = postItemsContainer.querySelector("textarea[name='comment[body]']");
+      txtArea.focus();
+    });
+  });
 });
