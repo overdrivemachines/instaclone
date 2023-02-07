@@ -1,0 +1,4 @@
+<%= turbo_stream.remove(@comment) %>
+<% if @replies_exist %>
+  <%= turbo_stream.remove "#{dom_id(@comment, 'replies_for')}" %>
+<% end %>

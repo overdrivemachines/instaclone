@@ -36,8 +36,10 @@ class CommentsController < ApplicationController
 
   # @route DELETE /posts/:post_id/comments/:id (post_comment)
   def destroy
+    @replies_exist = false
+    @replies_exist = true if @comment.replies.exists?
     @comment.destroy
-    render turbo_stream: turbo_stream.remove(@comment)
+    # render turbo_stream: turbo_stream.remove(@comment)
     # redirect_to comments_url, notice: "Comment was successfully destroyed."
   end
 
