@@ -47,6 +47,20 @@ body {
   // font-weight: 400;
 }
 
+#loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(#101010, 0.8);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
 .holygrail-body {
   display: flex;
   flex: 1;
@@ -336,6 +350,8 @@ h3 {
 
   @include lg-up-device() {
     width: 640px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   a {
@@ -775,6 +791,24 @@ h5.my-profile-username {
   margin-bottom: 0.5em;
 }
 
+.follow-suggestions {
+  .user-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-bottom: 1px solid var(--color-border1);
+    padding-top: 0.667rem;
+    padding-bottom: 0.667rem;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+  .post-author-info {
+    flex: 1;
+  }
+}
+
 //// Right Aside content
 aside.right-content hr {
   margin: 1.5em 0.5em;
@@ -911,10 +945,15 @@ section.users-show {
     text-align: center;
 
     .user-profile-img {
-      width: 150px;
-      height: 150px;
+      width: 100px;
+      height: 100px;
+      border-radius: 100px;
       object-fit: cover;
-      border-radius: 150px;
+      @include lg-up-device() {
+        width: 150px;
+        height: 150px;
+        border-radius: 150px;
+      }
     }
 
     h2 {
@@ -1049,12 +1088,16 @@ section.users-show {
 section.posts-show {
   .back-container {
     width: 100%;
+    padding-left: 1em;
+    padding-right: 1em;
     padding-bottom: 1rem;
 
     @include lg-up-device() {
       width: 1025px;
       margin-left: auto;
       margin-right: auto;
+      padding-left: 0;
+      padding-right: 0;
     }
   }
   .post-container {
@@ -1083,6 +1126,14 @@ section.posts-show {
   }
 
   .comments-container {
+    overflow-x: auto;
+    max-height: 100%;
+    @include lg-up-device() {
+      overflow-x: hidden;
+      overflow-y: auto;
+      // max-height: 350px;
+      max-height: calc(100vh - 471px);
+    }
   }
   .new-comment-container {
   }
