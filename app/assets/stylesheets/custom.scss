@@ -385,8 +385,11 @@ h3 {
 .section-main {
   display: flex;
   justify-content: center;
-  padding-left: 1.875em;
-  padding-right: 1.875em;
+  padding: 0;
+  @media (min-width: 992px) {
+    padding-left: 1.875em;
+    padding-right: 1.875em;
+  }
   // padding-right: 2em;
   .left-content,
   .middle-content,
@@ -396,13 +399,29 @@ h3 {
   }
   .middle-content {
     // display: flex;
-    max-width: 680px;
+    max-width: 100%;
     margin-left: 1em;
     margin-right: 1em;
+
+    @media (min-width: 992px) {
+      max-width: 680px;
+    }
   }
-  aside.left-content,
+  aside.left-content {
+    flex: 1;
+    display: none;
+
+    @media (min-width: 992px) {
+      display: block;
+    }
+  }
+
   aside.right-content {
     flex: 1;
+    display: none;
+    @media (min-width: 1200px) {
+      display: block;
+    }
   }
 
   .post-image {
@@ -852,8 +871,14 @@ section.users-show {
     }
     .username-container {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
+      flex-direction: column;
+      align-items: flex-start;
+
+      @media (min-width: 992px) {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
     }
 
     ul.stats-container {
