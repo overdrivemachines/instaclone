@@ -18,6 +18,12 @@
 
 $feature-bg: #ffd803;
 
+@mixin lg-up-device {
+  @media (min-width: 992px) {
+    @content;
+  }
+}
+
 html {
   box-sizing: border-box;
   scroll-behavior: "smooth";
@@ -328,7 +334,7 @@ h3 {
   margin-right: 1rem;
   // border: 1px solid var(--color-primary);
 
-  @media (min-width: 992px) {
+  @include lg-up-device() {
     width: 640px;
   }
 
@@ -375,14 +381,14 @@ h3 {
     border-top: 1px solid var(--color-border2);
     border-bottom: 1px solid var(--color-border2);
 
-    @media (min-width: 992px) {
+    @include lg-up-device() {
       padding: 1em;
     }
 
     .btn-primary {
       width: 100%;
 
-      @media (min-width: 992px) {
+      @include lg-up-device() {
         width: auto;
       }
     }
@@ -405,7 +411,7 @@ h3 {
   display: flex;
   justify-content: center;
   padding: 0;
-  @media (min-width: 992px) {
+  @include lg-up-device() {
     padding-left: 1.875em;
     padding-right: 1.875em;
   }
@@ -420,7 +426,7 @@ h3 {
     // display: flex;
     max-width: 100%;
 
-    @media (min-width: 992px) {
+    @include lg-up-device() {
       max-width: 680px;
       margin-left: 1em;
       margin-right: 1em;
@@ -430,7 +436,7 @@ h3 {
     flex: 1;
     display: none;
 
-    @media (min-width: 992px) {
+    @include lg-up-device() {
       display: block;
     }
   }
@@ -458,7 +464,7 @@ h3 {
   padding: 0.5em 0;
   margin-bottom: 1em;
 
-  @media (min-width: 992px) {
+  @include lg-up-device() {
     border-radius: 1em;
     padding: 1em 0;
   }
@@ -467,10 +473,16 @@ h3 {
   text-align: center;
 }
 .post-image {
-  max-width: 615px;
-  height: 638px;
-  margin: auto;
+  width: 100%;
+  max-height: 680px;
   object-fit: cover;
+  margin: 0;
+
+  @include lg-up-device() {
+    max-width: 615px;
+    height: 638px;
+    margin: auto;
+  }
 }
 
 .post-author-container {
@@ -479,14 +491,14 @@ h3 {
   display: flex;
   align-items: center;
 
-  @media (min-width: 992px) {
+  @include lg-up-device() {
     padding: 0 1em 0.5em 1em;
   }
 }
 
 .post-author-ic {
   padding: 0;
-  @media (min-width: 992px) {
+  @include lg-up-device() {
     padding: 0 0.5em;
   }
 
@@ -635,7 +647,7 @@ h3 {
   padding: 16px 1.5em 0.6em 1.5em;
   border-top: 1px solid var(--color-border2);
 
-  @media (min-width: 992px) {
+  @include lg-up-device() {
     padding: 16px 1.5em 0 1.5em;
   }
 }
@@ -645,7 +657,7 @@ h3 {
   .form-body {
     display: flex;
     flex-direction: column;
-    @media (min-width: 992px) {
+    @include lg-up-device() {
       align-items: center;
       flex-direction: row;
     }
@@ -674,7 +686,7 @@ h3 {
     overflow: hidden;
     margin-bottom: 1rem;
 
-    @media (min-width: 992px) {
+    @include lg-up-device() {
       margin-bottom: 0;
     }
   }
@@ -916,7 +928,7 @@ section.users-show {
       flex-direction: column;
       align-items: flex-start;
 
-      @media (min-width: 992px) {
+      @include lg-up-device() {
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
@@ -1036,24 +1048,38 @@ section.users-show {
 //////////////////////////////////////////////////////////
 section.posts-show {
   .back-container {
-    width: 1025px;
-    margin-left: auto;
-    margin-right: auto;
+    width: 100%;
     padding-bottom: 1rem;
+
+    @include lg-up-device() {
+      width: 1025px;
+      margin-left: auto;
+      margin-right: auto;
+    }
   }
   .post-container {
     display: flex;
-    width: 1025px;
-    margin-left: auto;
-    margin-right: auto;
     padding: 0;
+    flex-direction: column;
+    @include lg-up-device() {
+      width: 1025px;
+      margin-left: auto;
+      margin-right: auto;
+      flex-direction: row;
+    }
   }
   .post-image-container {
-    width: 60%;
+    width: 100%;
+    @include lg-up-device() {
+      width: 60%;
+    }
   }
   .post-items-container {
-    width: 40%;
+    width: 100%;
     padding: 1em 0;
+    @include lg-up-device() {
+      width: 40%;
+    }
   }
 
   .comments-container {
