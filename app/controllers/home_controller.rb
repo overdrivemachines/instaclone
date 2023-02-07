@@ -17,4 +17,11 @@ class HomeController < ApplicationController
     # if there is no message redirect to root
     redirect_to root_url unless flash[:notice]
   end
+
+  # @route GET /home/inbox (home_inbox)
+  def inbox
+    flash[:notice] = "Coming Soon"
+    flash[:message] = "This feature is unavailable at the moment."
+    redirect_to home_message_path
+  end
 end

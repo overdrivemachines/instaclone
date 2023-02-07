@@ -3,6 +3,7 @@
 #                        Prefix Verb   URI Pattern                                             Controller#Action
 #                          root GET    /                                                       home#index
 #                  home_message GET    /home/message(.:format)                                 home#message
+#                    home_inbox GET    /home/inbox(.:format)                                   home#inbox
 #              new_user_session GET    /users/sign_in(.:format)                                users/sessions#new
 #                  user_session POST   /users/sign_in(.:format)                                users/sessions#create
 #          destroy_user_session DELETE /users/sign_out(.:format)                               users/sessions#destroy
@@ -44,6 +45,7 @@
 #                  relationship DELETE /relationships/:id(.:format)                            relationships#destroy
 #                user_followers GET    /:username/followers(.:format)                          users#follow {:username=>/\w+/}
 #                user_followees GET    /:username/followees(.:format)                          users#follow {:username=>/\w+/}
+#                    user_saved GET    /:username/saved(.:format)                              users#saved {:username=>/\w+/}
 #                          user GET    /:username(.:format)                                    users#show {:username=>/\w+/}
 # rails_postmark_inbound_emails POST   /rails/action_mailbox/postmark/inbound_emails(.:format) action_mailbox/ingresses/postmark/inbound_emails#create
 
@@ -51,6 +53,8 @@ Rails.application.routes.draw do
   root "home#index"
 
   get "home/message"
+
+  get "home/inbox"
 
   devise_for :users, controllers: {
     sessions: "users/sessions", # explicitly defining controllers
@@ -79,6 +83,9 @@ Rails.application.routes.draw do
 
   get ":username/followees", to: "users#follow", as: "user_followees",
                              constraints: { username: User::USERNAME_REGEX }
+
+  get ":username/saved", to: "users#saved", as: "user_saved",
+                         constraints: { username: User::USERNAME_REGEX }
 
   # resources :users, only: [:show]
   get ":username", to: "users#show", as: "user", constraints: { username: User::USERNAME_REGEX }

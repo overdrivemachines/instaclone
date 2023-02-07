@@ -14,6 +14,13 @@ class UsersController < ApplicationController
     @follow_users = @user.send(@follow)
   end
 
+  # @route GET /:username/saved (user_saved)
+  def saved
+    flash[:notice] = "Coming Soon"
+    flash[:message] = "This feature is unavailable at the moment."
+    redirect_to home_message_path
+  end
+
   private
 
   def set_user
