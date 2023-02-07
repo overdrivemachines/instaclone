@@ -1,5 +1,9 @@
-<div class="auth-container modal-content">
-  <div class="auth-body">
-    <h3><%= flash[:notice] %></h2>
+<section class="holygrail-content section-message">
+  <div class="auth-container modal-content">
+    <div class="auth-body">
+      <h2><%= flash[:notice] %></h2>
+      <p><%= flash[:message] %></p>
+      <button onclick="history.back()" class="btn btn-primary">Go Back</button>
+    </div>
   </div>
-</div>
+</section>
