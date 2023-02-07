@@ -148,12 +148,13 @@ class User < ApplicationRecord
     # User.where("id NOT IN (#{id})")
 
     # u.followers.where(!u.followee_ids)
-    User.all.limit(5)
+    # User.all.limit(5)
+    User.limit(5).order("RANDOM()")
   end
 
   # "Who to follow?" suggestions when user is not signed in
   def self.follow_suggestions
-    User.all.limit(5)
+    User.limit(5).order("RANDOM()")
   end
 
   # returns a random user
