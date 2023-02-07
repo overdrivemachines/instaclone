@@ -4,10 +4,10 @@ class HomeController < ApplicationController
     # displaying just 10 posts
     # TODO: load on scroll or paginate
     if user_signed_in?
-      @posts = current_user.feed.limit(10)
+      @posts = current_user.feed.limit(10).shuffle
       @users_to_follow = current_user.follow_suggestions
     else
-      @posts = User.feed.limit(10)
+      @posts = User.feed.limit(10).shuffle
       @users_to_follow = User.follow_suggestions
     end
   end
