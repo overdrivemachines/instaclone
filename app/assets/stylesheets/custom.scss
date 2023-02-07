@@ -44,6 +44,7 @@ body {
 .holygrail-body {
   display: flex;
   flex: 1;
+  padding-top: 90px;
 }
 .holygrail-content {
   flex: 1;
@@ -153,36 +154,44 @@ h3 {
 //////////////////////////////////////////////////////////
 // Header
 //////////////////////////////////////////////////////////
-.site-header {
-  display: flex;
-  padding: 2.25em 1.875em 2.5em 1.875em;
-  .logo {
-    max-width: 32px;
-  }
-  .logo-text {
-    margin-left: 1em;
-    max-width: 128px;
-  }
-}
-.logo-container,
-.search-container,
-.nav-container {
-  flex: 1;
-  // border: 1px solid green;
-}
-.search-container {
-  text-align: center;
-}
-.nav-container {
-  text-align: right;
+
+.navbar {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--color-border1);
+  background: var(--color-bg);
 }
 
-.main-search {
-  width: 100%;
-  max-width: 320px;
-  margin-left: auto;
-  margin-right: auto;
-}
+// .site-header {
+//   display: flex;
+//   padding: 2.25em 1.875em 2.5em 1.875em;
+//   .logo {
+//     max-width: 32px;
+//   }
+//   .logo-text {
+//     margin-left: 1em;
+//     max-width: 128px;
+//   }
+// }
+// .logo-container,
+// .search-container,
+// .nav-container {
+//   flex: 1;
+//   // border: 1px solid green;
+// }
+// .search-container {
+//   text-align: center;
+// }
+// .nav-container {
+//   text-align: right;
+// }
+
+// .main-search {
+//   width: 100%;
+//   max-width: 320px;
+//   margin-left: auto;
+//   margin-right: auto;
+// }
 
 .modal-content {
   background: var(--color-post-bg);
@@ -191,6 +200,10 @@ h3 {
 
 .modal-header {
   border-color: var(--color-border2);
+  .btn-close {
+    // has no effect because the close icon is an image
+    color: var(--color-text2);
+  }
 }
 
 .modal-title {
@@ -205,82 +218,82 @@ h3 {
   // justify-content: space-between;
 }
 
-// Navigation
+// // Navigation
 
-ul.main-nav {
-  list-style-type: none;
-  // border: 1px solid red;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  .divider {
-    border-right: 1px solid var(--color-border2);
-  }
-}
-.nav-item-link {
-  padding: 0.33em 0.66em;
-  display: flex;
-  align-items: center;
-  font-size: 1.25em;
-  .fa-container {
-    font-size: 1em;
-    margin: 0 0.33em 0 0;
-  }
-  .nav-item-name {
-    display: none;
-  }
-}
-.nav-item.active .nav-item-link {
-  background: var(--color-text2);
-  color: var(--color-bg);
-  border-radius: 26px;
-  margin-right: 1.1em;
-  .fa-container {
-    color: var(--color-blue);
-  }
-  .nav-item-name {
-    display: block;
-    font-weight: 700;
-  }
-}
+// ul.main-nav {
+//   list-style-type: none;
+//   // border: 1px solid red;
+//   display: flex;
+//   justify-content: flex-end;
+//   align-items: center;
+//   .divider {
+//     border-right: 1px solid var(--color-border2);
+//   }
+// }
+// .nav-item-link {
+//   padding: 0.33em 0.66em;
+//   display: flex;
+//   align-items: center;
+//   font-size: 1.25em;
+//   .fa-container {
+//     font-size: 1em;
+//     margin: 0 0.33em 0 0;
+//   }
+//   .nav-item-name {
+//     display: none;
+//   }
+// }
+// .nav-item.active .nav-item-link {
+//   background: var(--color-text2);
+//   color: var(--color-bg);
+//   border-radius: 26px;
+//   margin-right: 1.1em;
+//   .fa-container {
+//     color: var(--color-blue);
+//   }
+//   .nav-item-name {
+//     display: block;
+//     font-weight: 700;
+//   }
+// }
 
-.nav-item.active.dark .nav-item-link {
-  background: var(--color-post-bg);
-  color: var(--color-text1);
-}
+// .nav-item.active.dark .nav-item-link {
+//   background: var(--color-post-bg);
+//   color: var(--color-text1);
+// }
 
-ul.main-nav .dd {
-  margin-left: 18px;
+// ul.main-nav .dd {
+//   margin-left: 18px;
 
-  .dropdown-menu {
-    --bs-dropdown-min-width: 12rem;
-    --bs-dropdown-bg: var(--color-post-bg);
-    --bs-dropdown-color: var(--color-text2);
-    border-radius: 20px;
-  }
-}
+//   .dropdown-menu {
+//     --bs-dropdown-min-width: 12rem;
+//     --bs-dropdown-bg: var(--color-post-bg);
+//     --bs-dropdown-color: var(--color-text2);
+//     border-radius: 20px;
+//   }
+// }
 
-.dd-btn {
-  display: flex;
-  align-items: center;
-  border-radius: 26px;
-  img {
-    height: 32px;
-    width: 32px;
-    border-radius: 32px;
-    object-fit: cover;
-    // margin-right: 0.5em;
-  }
-  span {
-    margin-left: 0.4em;
-    margin-right: 0.3em;
-    margin-top: 0.2em;
-  }
-}
-.dropdown-item {
-  color: var(--color-text2);
-  font-size: 1.2em;
-}
+// .dd-btn {
+//   display: flex;
+//   align-items: center;
+//   border-radius: 26px;
+//   img {
+//     height: 32px;
+//     width: 32px;
+//     border-radius: 32px;
+//     object-fit: cover;
+//     // margin-right: 0.5em;
+//   }
+//   span {
+//     margin-left: 0.4em;
+//     margin-right: 0.3em;
+//     margin-top: 0.2em;
+//   }
+// }
+// .dropdown-item {
+//   color: var(--color-text2);
+//   font-size: 1.2em;
+// }
 
 //////////////////////////////////////////////////////////
 /// Login Forms
