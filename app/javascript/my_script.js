@@ -118,4 +118,13 @@ document.addEventListener("turbo:load", () => {
       txtArea.focus();
     });
   });
+
+  // const loader = $("#loader");
+  // loader.style.display = "none";
+});
+
+// This function fires before Turbo issues a network request to fetch the page
+document.addEventListener("turbo:before-fetch-request", () => {
+  // const loader = $("#loader");
+  // loader.style.display = "flex";
 });
