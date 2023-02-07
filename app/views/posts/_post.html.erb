@@ -32,7 +32,15 @@
         <button class="btn-fa btn-comment"><i class="fa-regular fa-comment"></i></button>
       </div>
       <div class="right">
-        <button class="btn-fa"><i class="fa-regular fa-bookmark"></i></button>
+        <% if user_signed_in? %>
+          <%= link_to user_saved_path(current_user), class: "btn-fa" do %>
+            <i class="fa-regular fa-bookmark"></i>
+          <% end %>
+        <% else %>
+          <%= link_to new_user_session_path, class: "btn-fa" do %>
+            <i class="fa-regular fa-bookmark"></i>
+          <% end %>
+        <% end %>
       </div>
 
     </div>

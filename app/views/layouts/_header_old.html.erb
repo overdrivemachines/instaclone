@@ -40,11 +40,7 @@
       <li class="dd">
         <div class="dropdown">
           <button type="button" class="btn btn-primary dropdown-toggle dd-btn" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
-            <% if current_user.avatar.attached? %>
-              <%= image_tag current_user.avatar_as_thumbnail, class: "dd-btn-avatar" %>
-            <% else %>
-              <%= image_tag "person-placeholder.jpg", class: "dd-btn-avatar" %>
-            <% end %>
+            <%= user_avatar_image(user: current_user, class_name: "dd-btn-avatar") %>
             <span>@<%= current_user.username %></span>
           </button>
           <ul class="dropdown-menu dropdown-menu-end">

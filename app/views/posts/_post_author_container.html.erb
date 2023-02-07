@@ -2,7 +2,7 @@
 <%# This partial just displays a post's author info %>
 <div class="post-author-container">
   <div class="post-author-ic">
-    <%= image_tag post.user.avatar_as_thumbnail %>
+    <%= user_avatar_image(user: post.user) %>
   </div>
   <div class="post-author-info">
     <div class="name">
