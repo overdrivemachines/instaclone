@@ -1,19 +1,22 @@
 <%= turbo_frame_tag dom_id(likeable, "like") do %>
-  <%# likeable is either a post or comment object %>
-  <%# check to see if user likes the post/comment %>
-  <% like = nil %>
   <% if user_signed_in? %>
+    <%# likeable is either a post or comment object %>
+    <%# check to see if user likes the post/comment %>
     <% like = current_user.likes.find_by(likeable: likeable) %>
-  <% end %>
-  <% if like.nil? %>
-    <%# Link to create new like %>
-    <%= button_to likes_path, class: "btn-fa", params: {like: {likeable_id: likeable.id, likeable_type: likeable.class.to_s}} do %>
-      <i class="fa-regular fa-heart"></i>
+    <% if like.nil? %>
+      <%# Link to create new like: POST /likes %>
+      <%= button_to likes_path, class: "btn-fa", params: {like: {likeable_id: likeable.id, likeable_type: likeable.class.to_s}} do %>
+        <i class="fa-regular fa-heart"></i>
+      <% end %>
+    <% else %>
+      <%# Link to remove like: DELETE /likes/35 %>
+      <%= button_to like, class: "btn-fa", method: :delete do %>
+        <i class="fa-solid fa-heart liked"></i>
+      <% end %>
     <% end %>
   <% else %>
-    <%# Link to remove like %>
-    <%= button_to like, class: "btn-fa", method: :delete, data: { "bs-toggle": "popover", "bs-trigger": "hover focus", "bs-placement": "bottom", "bs-content": "Liked " + time_ago_in_words(like.created_at) + " ago" } do %>
-      <i class="fa-solid fa-heart liked"></i>
+    <%= link_to new_user_session_path, class: "btn-fa" do %>
+      <i class="fa-regular fa-heart"></i>
     <% end %>
   <% end %>
 <% end %>

@@ -1,4 +1,6 @@
 <%# Partial used by home/index.html.erb and posts/show.html.erb %>
+
+<%# Back button only for posts/show %>
 <% if controller_name == "posts" && action_name == "show" %>
   <div class="back-container">
     <%= link_to 'javascript:history.back()' do %>
@@ -54,7 +56,9 @@
 
       <% if controller_name == "home" && action_name == "index" %>
         <%# TODO: Render comment with most number of likes %>
-        <%= render post.comments.first %>
+        <% if post.comments.exists? %>
+          <%= render post.comments.first %>
+        <% end %>
 
         <%# "View all 32 comments" link %>
         <% if post.comments.size > 1 %>

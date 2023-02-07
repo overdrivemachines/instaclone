@@ -2,6 +2,8 @@ class LikesController < ApplicationController
   before_action :authenticate_user!
   # @route POST /likes (likes)
   def create
+    (redirect_to new_sessions_path && return) unless user_signed_in?
+
     @like = current_user.likes.new(like_params)
     @like.save
     render partial: "button", locals: { likeable: @like.likeable }
