@@ -75,7 +75,7 @@ class User < ApplicationRecord
                        uniqueness: { case_sensitive: false }, exclusion: { in: RESERVED_USERNAMES }
 
   def avatar_as_thumbnail
-    avatar.variant(resize_to_limit: [96, 96]).processed
+    avatar.variant(resize_to_limit: [150, 150]).processed
   end
 
   def avatar_background_as_thumbnail
