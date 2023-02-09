@@ -1,61 +1,59 @@
 <section class="holygrail-content users-show">
   <div class="profile-container">
-    <div class="w-940">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-4 d-flex align-items-center justify-content-center">
-            <% if @user.avatar.attached? %>
-              <%= image_tag @user.avatar, class: "user-profile-img" %>
+    <div class="w-940 user-container">
+      <div class="user-avatar-container">
+        <%= user_avatar_image(user: @user, class_name: "user-profile-img") %>
+      </div>
+      <div class="user-details-container">
+        <div class="username-container">
+          <%= link_to @user do %>
+            <h2 class="text-start"><%= @user.full_name %> <span>@<%= @user.username %></span></h2>
+          <% end %>
+          <div class="w-100">
+            <% if current_user == @user %>
+              <%= link_to users_edit_details_path(@user), class: "btn btn-instaclone" do %>
+                <i class="fa-solid fa-gear me-1"></i> Edit Details
+              <% end %>
             <% else %>
-              <%= image_tag "person-placeholder.jpg", class: "user-profile-img" %>
+              <%= render partial: "relationships/button", locals: {followee: @user} %>
             <% end %>
           </div>
-          <div class="col-8">
-            <div class="username-container">
-              <%= link_to @user do %>
-                <h2 class="text-start"><%= @user.full_name %> <span>@<%= @user.username %></span></h2>
-              <% end %>
-              <% if current_user == @user %>
-                <div>
-                  <%= link_to users_edit_details_path(@user), class: "btn btn-primary" do %>
-                    <i class="fa-solid fa-gear me-1"></i> Edit Details
-                  <% end %>
-                </div>
-              <% else %>
-                <div>
-                  <%= render partial: "relationships/button", locals: {followee: @user} %>
-                </div>
-              <% end %>
-            </div>
-            <ul class="stats-container">
-              <li><b><%= @user.posts.size %></b> posts</li>
-              <li>
-                <%= turbo_frame_tag "followers-modal-button" do %>
-                  <%= link_to user_followers_path(@user.username) do %>
-                    <b><%= @user.followers.size %></b> followers
-                  <% end %>
-                <% end %>
-              </li>
-              <li>
-                <%= turbo_frame_tag "followees-modal-button" do %>
-                  <%= link_to user_followees_path(@user.username) do %>
-                    <b><%= @user.followees.size %></b> following
-                  <% end %>
-                <% end %>
-              </li>
-            </ul>
-            <div class="bio-container">
-              <% if @user.bio.blank? %>
-                <em class="d-block mb-3">You don't have a bio</em>
-                <%= link_to "Add Bio", users_edit_details_path, class: "btn btn-primary" %>
-              <% else %>
-                <p><%= @user.bio %></p>
-              <% end %>
-            </div>
-          </div>
+        </div>
+        <div class="bio-container lg-up-only">
+          <% if @user.bio.blank? %>
+            <em class="d-block mb-3">No Bio</em>
+          <% else %>
+            <p><%= @user.bio %></p>
+          <% end %>
         </div>
       </div>
     </div>
+    <div class="mt-2 text-start lg-down-only">
+      <% if @user.bio.blank? %>
+        <em class="d-block mb-3">No Bio</em>
+      <% else %>
+        <p><%= @user.bio %></p>
+      <% end %>
+    </div>
+    <ul class="w-940 stats-container">
+      <li><b><%= @user.posts.size %></b> posts</li>
+      <li>
+        <%= turbo_frame_tag "followers-modal-button" do %>
+          <%# /:username/followers %>
+          <%= link_to user_followers_path(@user.username) do %>
+            <b><%= @user.followers.size %></b> followers
+          <% end %>
+        <% end %>
+      </li>
+      <li>
+        <%= turbo_frame_tag "followees-modal-button" do %>
+          <%# /:username/followees %>
+          <%= link_to user_followees_path(@user.username) do %>
+            <b><%= @user.followees.size %></b> following
+          <% end %>
+        <% end %>
+      </li>
+    </ul>
   </div>
 
   <div class="posts-container">
