@@ -3,7 +3,8 @@ class UsersController < ApplicationController
 
   # @route GET /:username (user)
   def show
-    @posts = @user.posts.all
+    # @posts = Post.where("user_id = #{@user.id}").includes(:image_attachment)
+    @posts = @user.posts.includes(image_attachment: :blob)
   end
 
   # @route GET /:username/followers (user_followers)
@@ -25,5 +26,11 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find_by(username: params[:username])
+    return if @user
+
+    flash[:notice] = "#{params[:username]} not found"
+    flash[:message] = "Please check the username and try again"
+    redirect_to home_message_path
+    # false
   end
 end
