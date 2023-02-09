@@ -1,6 +1,8 @@
 <div class="post-author-container">
   <div class="post-author-ic">
-    <%= user_avatar_image(user: user) %>
+    <%= link_to user do %>
+      <%= user_avatar_image(user: user) %>
+    <% end %>
   </div>
   <div class="post-author-info">
     <%= link_to user, class: "d-inline-block", data: { "turbo-frame": "_top" } do %>
