@@ -39,7 +39,7 @@
     <% if user_signed_in? %>
       <li class="dd">
         <div class="dropdown">
-          <button type="button" class="btn btn-primary dropdown-toggle dd-btn" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+          <button type="button" class="btn btn-instaclone dropdown-toggle dd-btn" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
             <%= user_avatar_image(user: current_user, class_name: "dd-btn-avatar") %>
             <span>@<%= current_user.username %></span>
           </button>

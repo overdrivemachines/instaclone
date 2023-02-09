@@ -21,6 +21,6 @@
     <%# 2) removeFlashMessages() is called whenever the textarea is focused %>
     <%= form.text_area :body, class: "form-control", id: "#{dom_id(comment, dom_id(post))}_body", data: { "comment-target": "txtarea" , action: "input->comment#resizeTextArea focus->comment#removeFlashMessages", "post-id": post.id} %>
     <%# form.text_area :body, class: "form-control" %>
-    <%= form.submit "Post", class: "btn btn-primary" %>
+    <%= form.submit "Post", class: "btn btn-instaclone" %>
   </div>
 <% end %>

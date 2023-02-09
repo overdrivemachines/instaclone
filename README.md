@@ -155,3 +155,4 @@ bundle lock --add-platform x86_64-linux
 - Followers
   - https://www.devwalks.com/lets-build-instagram-with-ruby-on-rails-part-6-follow-all-the-people/
   - Includes - https://medium.com/@pdiba/creating-a-follower-system-in-rails-38b7d59d63ac
+- Bootstrap Buttons - https://codepen.io/andrewarchi/pen/RwxyRB
