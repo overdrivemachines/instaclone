@@ -13,7 +13,7 @@ module ApplicationHelper
     if user.avatar_background.attached?
       image_tag current_user.avatar_background_as_thumbnail, class: class_name
     else
-      image_tag "bg-placeholder", class: class_name
+      image_tag "bg-placeholder.jpg", class: class_name
     end
   end
 end
